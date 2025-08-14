@@ -1,0 +1,6 @@
+{
+  "name": "AGENTS AI Ltd",
+  "description": "一个交互式演示工具，可将多个 HTML 文件显示为一个具有导航控件的统一幻灯片。使用箭头键或屏幕上的按钮在幻灯片之间导航。",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
