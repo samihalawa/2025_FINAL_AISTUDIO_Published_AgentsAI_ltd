@@ -130,7 +130,7 @@ const App: React.FC = () => {
                 <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-lg text-zinc-400">
                     <span className="flex items-center gap-2"><i data-lucide="map-pin" className="w-5 h-5 text-emerald-400"></i>London, UK</span>
                     <span className="flex items-center gap-2"><i data-lucide="shield-check" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.regNo')}: 13374242</span>
-                    <span className="flex items-center gap-2"><i data-lucide="mail" className="w-5 h-5 text-emerald-400"></i>investors@agents.ai</span>
+                    <span className="flex items-center gap-2"><i data-lucide="mail" className="w-5 h-5 text-emerald-400"></i>hello@agentsai.ltd</span>
                 </div>
             </div>
         </div>
