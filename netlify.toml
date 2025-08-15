@@ -4,6 +4,10 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  GEMINI_API_KEY = ""
+
+[context.production.environment]
+  GEMINI_API_KEY = ""
 
 [[redirects]]
   from = "/*"

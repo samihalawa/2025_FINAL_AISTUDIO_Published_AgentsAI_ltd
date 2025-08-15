@@ -20,7 +20,7 @@ if (!API_KEY) {
   console.warn("API_KEY is not set. AI features will be disabled.");
 }
 
-const ai = new GoogleGenAI({apiKey: API_KEY!});
+const ai = API_KEY ? new GoogleGenAI({apiKey: API_KEY}) : null;
 
 export interface ContextualInfo {
     summary: string;
@@ -73,6 +73,10 @@ export async function generateSpeakerNotes(slideHtml: string, language: Language
     const prompt = t('gemini.speakerNotesPrompt', { slideText });
 
     try {
+        if (!ai) {
+            return Promise.resolve(t('presentationsPage.notes.error.noApiKey'));
+        }
+        
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: prompt,
@@ -126,6 +130,10 @@ export async function generateContextualInfo(paragraph: string, fullContext: str
     const prompt = t('gemini.contextInfoPrompt', { paragraph, fullContext });
 
     try {
+        if (!ai) {
+            throw new Error(t('contextPane.error.noApiKey'));
+        }
+        
         const response = await ai.models.generateContent({
             model: "gemini-2.5-flash",
             contents: prompt,
