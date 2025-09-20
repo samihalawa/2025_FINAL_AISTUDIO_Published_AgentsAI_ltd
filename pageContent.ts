@@ -58,6 +58,7 @@ const content = {
             { href: '#roadmap', text: 'Roadmap' },
             { href: '#why-invest', text: 'Why Invest' },
             { href: '#portfolio', text: 'Portfolio' },
+            { href: '#blog', text: 'Insights' },
             { href: '#cta', text: 'Contact' },
         ],
         PRESENTATIONS: [
@@ -65,7 +66,35 @@ const content = {
             { title: 'AutoClient.ai (Sales AI)', slides: AUTOCLIENT_SLIDES_EN },
             { title: 'RadiologyAI (Radiology AI)', slides: RADIOLOGY_AI_SLIDES_EN },
             { title: 'AutoFootball.ai (Football AI)', slides: AUTOFOOTBALL_SLIDES_EN }
-        ]
+        ],
+        BLOG_SECTION: {
+            title: 'Latest Intelligence Briefings',
+            intro: 'Investor-ready insights that track traction milestones, product validation, and market signals across the AGENTS AI portfolio.',
+            ctaLabel: 'Open briefing',
+            posts: [
+                {
+                    title: 'Apolo launches targeted NHS diagnostic pilot',
+                    category: 'Healthcare AI',
+                    date: 'July 2025',
+                    excerpt: 'A two-hospital NHS trust approved a 6-month pilot to benchmark Apolo against incumbent CAD radiology tools across 12,000 annual scans.',
+                    insight: 'Pilot expands Apolo’s labelled dataset by 18% and opens NHS procurement pathway for FY26.'
+                },
+                {
+                    title: 'AutoClient.ai automates pipeline for Tier-1 fintech vendor',
+                    category: 'Revenue Growth',
+                    date: 'August 2025',
+                    excerpt: 'Closed a paid deployment with a £80m ARR fintech to orchestrate outbound personalization, delivering 34% lift in opportunity creation within four weeks.',
+                    insight: 'Expands ACV to £120k with co-developed compliance templates that can resell into regulated verticals.'
+                },
+                {
+                    title: 'RadiologyAI earns CE Class IIa readiness milestone',
+                    category: 'Regulatory',
+                    date: 'September 2025',
+                    excerpt: 'Completed clinical risk management audit and penultimate cybersecurity review, positioning RadiologyAI for CE mark submission in Q4 2025.',
+                    insight: 'Accelerates European commercialization roadmap and strengthens pricing power with hospitals demanding evidence-backed automation.'
+                }
+            ]
+        }
     },
     es: {
         PROJECT_DETAILS: [
@@ -119,6 +148,7 @@ const content = {
             { href: '#roadmap', text: 'Hoja de Ruta' },
             { href: '#why-invest', text: 'Por Qué Invertir' },
             { href: '#portfolio', text: 'Portafolio' },
+            { href: '#blog', text: 'Perspectivas' },
             { href: '#cta', text: 'Contacto' },
         ],
         PRESENTATIONS: [
@@ -126,7 +156,35 @@ const content = {
             { title: 'AutoClient.ai (IA de Ventas)', slides: AUTOCLIENT_SLIDES_ES },
             { title: 'RadiologyAI (IA de Radiología)', slides: RADIOLOGY_AI_SLIDES_ES },
             { title: 'AutoFootball.ai (IA de Fútbol)', slides: AUTOFOOTBALL_SLIDES_ES }
-        ]
+        ],
+        BLOG_SECTION: {
+            title: 'Informes Estratégicos Recientes',
+            intro: 'Actualizaciones preparadas para inversores que conectan tracción comercial, validación de producto y señales de mercado en todo el portafolio de AGENTS AI.',
+            ctaLabel: 'Abrir informe',
+            posts: [
+                {
+                    title: 'Apolo inicia piloto dirigido con un trust del NHS',
+                    category: 'IA en Salud',
+                    date: 'Julio 2025',
+                    excerpt: 'Un trust del NHS que reúne a dos hospitales aprobó un piloto de 6 meses para comparar Apolo con las herramientas CAD existentes en 12 000 estudios anuales.',
+                    insight: 'El piloto amplía el conjunto de datos etiquetados de Apolo en un 18 % y abre la vía de compras del NHS para el ejercicio 2026.'
+                },
+                {
+                    title: 'AutoClient.ai automatiza el pipeline para proveedor fintech de nivel 1',
+                    category: 'Crecimiento de Ingresos',
+                    date: 'Agosto 2025',
+                    excerpt: 'Se cerró un despliegue de pago con una fintech de £80M ARR para orquestar la personalización outbound, logrando un aumento del 34 % en oportunidades creadas en cuatro semanas.',
+                    insight: 'Amplía el ACV a £120k con plantillas de cumplimiento co-desarrolladas que pueden revenderse en verticales regulados.'
+                },
+                {
+                    title: 'RadiologyAI alcanza hito de preparación para marcado CE Clase IIa',
+                    category: 'Regulación',
+                    date: 'Septiembre 2025',
+                    excerpt: 'Completó la auditoría de gestión de riesgos clínicos y la penúltima revisión de ciberseguridad, preparando a RadiologyAI para presentar la certificación CE en el 4T 2025.',
+                    insight: 'Acelera la hoja de ruta de comercialización europea y refuerza el poder de fijación de precios con hospitales que exigen automatización respaldada por evidencia.'
+                }
+            ]
+        }
     },
     zh: {
         PROJECT_DETAILS: [
@@ -180,6 +238,7 @@ const content = {
             { href: '#roadmap', text: '路线图' },
             { href: '#why-invest', text: '为何投资' },
             { href: '#portfolio', text: '项目组合' },
+            { href: '#blog', text: '洞察' },
             { href: '#cta', text: '联系' },
         ],
         PRESENTATIONS: [
@@ -187,7 +246,35 @@ const content = {
             { title: 'AutoClient.ai (销售AI)', slides: AUTOCLIENT_SLIDES_ZH },
             { title: 'RadiologyAI (放射科AI)', slides: RADIOLOGY_AI_SLIDES_ZH },
             { title: 'AutoFootball.ai (足球AI)', slides: AUTOFOOTBALL_SLIDES_ZH }
-        ]
+        ],
+        BLOG_SECTION: {
+            title: '最新战略洞察',
+            intro: '面向投资人的高价值简报，串联 AGENTS AI 各项目的商业进展、产品验证与市场信号。',
+            ctaLabel: '打开简报',
+            posts: [
+                {
+                    title: 'Apolo 启动 NHS 定向诊断试点',
+                    category: '医疗AI',
+                    date: '2025年7月',
+                    excerpt: '两家英国国民健康署医院批准为期 6 个月的试点，将 Apolo 与现有 CAD 放射工具在每年 1.2 万例影像上进行对比。',
+                    insight: '试点将 Apolo 的标注数据集扩充 18%，为 2026 财年打开 NHS 采购通道。'
+                },
+                {
+                    title: 'AutoClient.ai 支持一级金融科技供应商自动化线索',
+                    category: '营收增长',
+                    date: '2025年8月',
+                    excerpt: '与一家年经常性收入 8000 万英镑的金融科技企业签订付费部署，四周内实现商机创建提升 34%。',
+                    insight: '结合共建的合规模板，将年度合同额提升至 12 万英镑，可复制至受监管行业。'
+                },
+                {
+                    title: 'RadiologyAI 达成 CE Class IIa 提交前关键节点',
+                    category: '监管合规',
+                    date: '2025年9月',
+                    excerpt: '完成临床风险管理审计与倒数第二次网络安全评估，计划于 2025 年第四季度提交 CE 认证。',
+                    insight: '加速欧洲商业化节奏，并以有证据支撑的自动化能力增强医院端的议价空间。'
+                }
+            ]
+        }
     }
 };
 
@@ -201,6 +288,18 @@ interface PageContent {
     };
     NAV_LINKS: { href: string; text: string }[];
     PRESENTATIONS: SlideDeck[];
+    BLOG_SECTION: {
+        title: string;
+        intro: string;
+        ctaLabel: string;
+        posts: {
+            title: string;
+            category: string;
+            date: string;
+            excerpt: string;
+            insight: string;
+        }[];
+    };
     getPageContext: () => string;
 }
 
@@ -227,12 +326,20 @@ export const getPageContent = (lang: Language): PageContent => {
         return context;
     };
 
+    const serializeBlog = (blog: PageContent['BLOG_SECTION']): string => {
+        let context = `## ${blog.title}\n${blog.intro}\n`;
+        context += blog.posts.map(post => `### ${post.title} (${post.category}, ${post.date})\n${post.excerpt}\n${post.insight}`).join('\n') + '\n';
+        return context;
+    };
+
     return {
         ...data,
         getPageContext: (): string => {
-            return Object.entries(data.PAGE_SECTIONS)
-                         .map(([key, value]) => serializeSection(value.title, value))
-                         .join('\n\n');
+            const sectionContext = Object.entries(data.PAGE_SECTIONS)
+                                         .map(([_, value]) => serializeSection(value.title, value))
+                                         .join('\n\n');
+            const blogContext = serializeBlog(data.BLOG_SECTION);
+            return `${sectionContext}\n\n${blogContext}`.trim();
         }
     };
 };

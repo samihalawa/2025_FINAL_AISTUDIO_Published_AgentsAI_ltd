@@ -113,7 +113,7 @@ export const APOLO_SLIDES_EN = [
                             </div>
                         </div>
                          <div style="margin-top: auto;">
-                            <button style="width: 100%;">Generate Draft Report</button>
+                            <button type="button" style="width: 100%;">Generate Draft Report</button>
                          </div>
                     </div>
                 </div>
@@ -167,11 +167,11 @@ export const APOLO_SLIDES_EN = [
                     <div class="glass-card" style="display:flex; flex-direction:column; justify-content: space-between;">
                         <h4 class="font-bold">Physician Feedback</h4>
                          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                           <button style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(142, 76%, 51%, 0.1) !important; color: hsl(142, 76%, 70%) !important; border: 1px solid hsl(142, 76%, 51%) !important; font-weight: 600;">Agree with AI Diagnosis</button>
-                           <button style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(39, 92%, 66%, 0.1) !important; color: hsl(39, 92%, 75%) !important; border: 1px solid hsl(39, 92%, 66%) !important; font-weight: 600;">Modify & Comment</button>
-                           <button style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(0, 84%, 60%, 0.1) !important; color: hsl(0, 84%, 70%) !important; border: 1px solid hsl(0, 84%, 60%) !important; font-weight: 600;">Incorrect</button>
+                           <button type="button" style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(142, 76%, 51%, 0.1) !important; color: hsl(142, 76%, 70%) !important; border: 1px solid hsl(142, 76%, 51%) !important; font-weight: 600;">Agree with AI Diagnosis</button>
+                           <button type="button" style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(39, 92%, 66%, 0.1) !important; color: hsl(39, 92%, 75%) !important; border: 1px solid hsl(39, 92%, 66%) !important; font-weight: 600;">Modify & Comment</button>
+                           <button type="button" style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(0, 84%, 60%, 0.1) !important; color: hsl(0, 84%, 70%) !important; border: 1px solid hsl(0, 84%, 60%) !important; font-weight: 600;">Incorrect</button>
                         </div>
-                        <button style="width:100%;">Submit Feedback</button>
+                        <button type="button" style="width:100%;">Submit Feedback</button>
                     </div>
                 </div>
             </div>
@@ -377,7 +377,7 @@ export const APOLO_SLIDES_ES = [
                             </div>
                         </div>
                          <div style="margin-top: auto;">
-                            <button style="width: 100%;">Generar Borrador de Informe</button>
+                            <button type="button" style="width: 100%;">Generar Borrador de Informe</button>
                          </div>
                     </div>
                 </div>
@@ -431,11 +431,11 @@ export const APOLO_SLIDES_ES = [
                     <div class="glass-card" style="display:flex; flex-direction:column; justify-content: space-between;">
                         <h4 class="font-bold">Retroalimentación del Médico</h4>
                          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                           <button style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(142, 76%, 51%, 0.1) !important; color: hsl(142, 76%, 70%) !important; border: 1px solid hsl(142, 76%, 51%) !important; font-weight: 600;">De acuerdo con Diagnóstico IA</button>
-                           <button style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(39, 92%, 66%, 0.1) !important; color: hsl(39, 92%, 75%) !important; border: 1px solid hsl(39, 92%, 66%) !important; font-weight: 600;">Modificar y Comentar</button>
-                           <button style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(0, 84%, 60%, 0.1) !important; color: hsl(0, 84%, 70%) !important; border: 1px solid hsl(0, 84%, 60%) !important; font-weight: 600;">Incorrecto</button>
+                           <button type="button" style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(142, 76%, 51%, 0.1) !important; color: hsl(142, 76%, 70%) !important; border: 1px solid hsl(142, 76%, 51%) !important; font-weight: 600;">De acuerdo con Diagnóstico IA</button>
+                           <button type="button" style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(39, 92%, 66%, 0.1) !important; color: hsl(39, 92%, 75%) !important; border: 1px solid hsl(39, 92%, 66%) !important; font-weight: 600;">Modificar y Comentar</button>
+                           <button type="button" style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(0, 84%, 60%, 0.1) !important; color: hsl(0, 84%, 70%) !important; border: 1px solid hsl(0, 84%, 60%) !important; font-weight: 600;">Incorrecto</button>
                         </div>
-                        <button style="width:100%;">Enviar Retroalimentación</button>
+                        <button type="button" style="width:100%;">Enviar Retroalimentación</button>
                     </div>
                 </div>
             </div>
@@ -641,7 +641,7 @@ export const APOLO_SLIDES_ZH = [
                             </div>
                         </div>
                          <div style="margin-top: auto;">
-                            <button style="width: 100%;">生成报告草稿</button>
+                            <button type="button" style="width: 100%;">生成报告草稿</button>
                          </div>
                     </div>
                 </div>
@@ -695,11 +695,11 @@ export const APOLO_SLIDES_ZH = [
                     <div class="glass-card" style="display:flex; flex-direction:column; justify-content: space-between;">
                         <h4 class="font-bold">医生反馈</h4>
                          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                           <button style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(142, 76%, 51%, 0.1) !important; color: hsl(142, 76%, 70%) !important; border: 1px solid hsl(142, 76%, 51%) !important; font-weight: 600;">同意AI诊断</button>
-                           <button style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(39, 92%, 66%, 0.1) !important; color: hsl(39, 92%, 75%) !important; border: 1px solid hsl(39, 92%, 66%) !important; font-weight: 600;">修改并评论</button>
-                           <button style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(0, 84%, 60%, 0.1) !important; color: hsl(0, 84%, 70%) !important; border: 1px solid hsl(0, 84%, 60%) !important; font-weight: 600;">不正确</button>
+                           <button type="button" style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(142, 76%, 51%, 0.1) !important; color: hsl(142, 76%, 70%) !important; border: 1px solid hsl(142, 76%, 51%) !important; font-weight: 600;">同意AI诊断</button>
+                           <button type="button" style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(39, 92%, 66%, 0.1) !important; color: hsl(39, 92%, 75%) !important; border: 1px solid hsl(39, 92%, 66%) !important; font-weight: 600;">修改并评论</button>
+                           <button type="button" style="width: 100%; text-align:left; padding: 0.75rem; border-radius: 0.5rem; background: hsla(0, 84%, 60%, 0.1) !important; color: hsl(0, 84%, 70%) !important; border: 1px solid hsl(0, 84%, 60%) !important; font-weight: 600;">不正确</button>
                         </div>
-                        <button style="width:100%;">提交反馈</button>
+                        <button type="button" style="width:100%;">提交反馈</button>
                     </div>
                 </div>
             </div>

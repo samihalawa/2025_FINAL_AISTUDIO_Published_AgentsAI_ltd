@@ -13,7 +13,7 @@ const LanguageSwitcher: React.FC = () => {
     return (
         <div className="flex items-center gap-1 bg-zinc-800/50 p-1 rounded-full" aria-label={t('languageSwitcher.label')}>
             {languages.map(lang => (
-                <button
+                <button type="button"
                     key={lang.code}
                     onClick={() => setLanguage(lang.code)}
                     className={`w-9 h-7 flex items-center justify-center rounded-full text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 ${

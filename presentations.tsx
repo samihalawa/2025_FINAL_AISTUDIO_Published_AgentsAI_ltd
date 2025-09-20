@@ -256,7 +256,7 @@ const PresentationsApp: React.FC = () => {
                   </div>
                   
                   <div ref={playerRef} className={`lg:w-2/3 bg-zinc-950/50 p-4 rounded-xl border border-zinc-800 flex flex-col justify-between transition-all duration-300 ${isFullScreen ? 'fixed inset-0 z-50 p-6' : 'relative'}`} aria-live="polite" aria-atomic="true">
-                      <h3 className="sr-only">Showing presentation for {activeDeck.title}</h3>
+                      <h3 className="sr-only">{t('presentationsPage.viewer.ariaLabel', { project: activeDeck.title })}</h3>
                       <div className="w-full aspect-video bg-black rounded-lg shadow-2xl shadow-black/50 ring-1 ring-white/10 relative overflow-hidden shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)]">
                           {isLoading && (
                             <div className="absolute inset-0 flex items-center justify-center bg-black z-30">
@@ -265,7 +265,7 @@ const PresentationsApp: React.FC = () => {
                           )}
                           <SlideViewer htmlContent={slideState.slideA.content} isVisible={slideState.key === 'A' && !isLoading} onLoaded={() => handleSlideLoaded('slideA')} />
                           <SlideViewer htmlContent={slideState.slideB.content} isVisible={slideState.key === 'B' && !isLoading} onLoaded={() => handleSlideLoaded('slideB')} />
-                          <button onClick={toggleFullScreen} className="absolute top-3 right-3 z-20 p-2 rounded-full text-zinc-300 bg-black/40 hover:bg-white/20 transition-colors" aria-label={t('presentationsPage.toggleFullscreen')}>
+                          <button type="button" onClick={toggleFullScreen} className="absolute top-3 right-3 z-20 p-2 rounded-full text-zinc-300 bg-black/40 hover:bg-white/20 transition-colors" aria-label={t('presentationsPage.toggleFullscreen')}>
                             {isFullScreen ? <i data-lucide="minimize-2" className="w-5 h-5"></i> : <i data-lucide="maximize-2" className="w-5 h-5"></i>}
                           </button>
                       </div>

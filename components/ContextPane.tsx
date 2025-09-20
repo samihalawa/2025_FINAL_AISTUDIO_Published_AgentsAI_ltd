@@ -69,7 +69,7 @@ const ContextPane: React.FC<ContextPaneProps> = ({ isLoading, context, onClose, 
       <div className="bg-zinc-900/70 backdrop-blur-xl border border-zinc-800 rounded-2xl shadow-2xl w-full h-full flex flex-col animate-slide-in-right">
         <header className="flex items-center justify-between p-4 border-b border-zinc-800 flex-shrink-0">
           <h3 className="font-bold text-lg">{t('contextPane.title')}</h3>
-          <button onClick={onClose} className="p-2 rounded-full text-zinc-400 hover:bg-zinc-800 transition-colors" aria-label={t('contextPane.close')}>
+          <button type="button" onClick={onClose} className="p-2 rounded-full text-zinc-400 hover:bg-zinc-800 transition-colors" aria-label={t('contextPane.close')}>
             <CloseIcon />
           </button>
         </header>
@@ -101,7 +101,7 @@ const ContextPane: React.FC<ContextPaneProps> = ({ isLoading, context, onClose, 
               {context.relatedSlide && (
                   <div>
                       <h4 className="font-bold text-emerald-400 mb-3 flex items-center gap-2"><i data-lucide="presentation" className="w-5 h-5"></i>{t('contextPane.relatedSlide')}</h4>
-                      <button 
+                      <button type="button" 
                         onClick={() => onSlideClick(context.relatedSlide!.deckIndex)}
                         className="w-full text-left bg-zinc-800 hover:bg-zinc-700/70 p-3 rounded-lg transition-colors flex items-center gap-3 border border-zinc-700 hover:border-emerald-500/50">
                         <i data-lucide="sidebar-open" className="w-5 h-5 text-zinc-400 flex-shrink-0"></i>
@@ -115,7 +115,7 @@ const ContextPane: React.FC<ContextPaneProps> = ({ isLoading, context, onClose, 
                   <h4 className="font-bold text-emerald-400 mb-3 flex items-center gap-2"><i data-lucide="message-circle-question" className="w-5 h-5"></i>{t('contextPane.deepDive')}</h4>
                   <div className="space-y-2">
                     {context.followUpQuestions.map(q => (
-                      <button 
+                      <button type="button" 
                         key={q} 
                         onClick={() => onQuestionClick(q)}
                         className="w-full text-left text-sm text-zinc-300 bg-zinc-800/50 hover:bg-zinc-800 p-3 rounded-lg transition-colors group flex items-center"

@@ -139,7 +139,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ systemInstruction }) => {
 
   return (
     <>
-      <button
+      <button type="button"
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full btn-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-emerald-500/30"
         aria-label={t('chatbot.open')}
@@ -154,7 +154,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ systemInstruction }) => {
                     {/* Header */}
                     <header className="flex items-center justify-between p-4 border-b border-zinc-800 flex-shrink-0">
                         <h2 className="text-lg font-bold">{t('chatbot.title')}</h2>
-                        <button onClick={() => setIsOpen(false)} className="p-2 rounded-full text-zinc-400 hover:bg-zinc-800 transition-colors" aria-label={t('chatbot.close')}>
+                        <button type="button" onClick={() => setIsOpen(false)} className="p-2 rounded-full text-zinc-400 hover:bg-zinc-800 transition-colors" aria-label={t('chatbot.close')}>
                             <CloseIcon />
                         </button>
                     </header>
@@ -188,7 +188,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ systemInstruction }) => {
                             <p className="text-xs text-zinc-400 mb-2">{t('chatbot.starterHint')}</p>
                             <div className="flex flex-wrap gap-2">
                                 {STARTER_QUESTIONS.map(q => (
-                                    <button key={q} onClick={() => handleStarterClick(q)} className="text-sm bg-zinc-800/70 border border-zinc-700 hover:bg-zinc-700/80 hover:border-emerald-500/50 px-3 py-1.5 rounded-full transition-all duration-200">{q}</button>
+                                    <button type="button" key={q} onClick={() => handleStarterClick(q)} className="text-sm bg-zinc-800/70 border border-zinc-700 hover:bg-zinc-700/80 hover:border-emerald-500/50 px-3 py-1.5 rounded-full transition-all duration-200">{q}</button>
                                 ))}
                             </div>
                         </div>

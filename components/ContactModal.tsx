@@ -58,7 +58,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, projects }
         className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 rounded-2xl shadow-2xl w-full max-w-2xl text-white animate-scale-in relative max-h-[90vh] flex flex-col"
         onClick={e => e.stopPropagation()}
       >
-        <button onClick={handleClose} className="absolute top-4 right-4 p-2 rounded-full text-zinc-400 hover:bg-white/10 transition-colors z-10" aria-label={t('contactModal.close')}>
+        <button type="button" onClick={handleClose} className="absolute top-4 right-4 p-2 rounded-full text-zinc-400 hover:bg-white/10 transition-colors z-10" aria-label={t('contactModal.close')}>
           <CloseIcon />
         </button>
         
@@ -67,7 +67,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, projects }
             <div className="p-8 md:p-12 text-center">
               <h2 id="contact-modal-title" className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-400">{t('contactModal.success.title')}</h2>
               <p className="text-lg text-zinc-300 mb-6">{t('contactModal.success.body')}</p>
-              <button onClick={handleClose} className="btn-primary px-8 py-3 text-lg">{t('contactModal.success.close')}</button>
+              <button type="button" onClick={handleClose} className="btn-primary px-8 py-3 text-lg">{t('contactModal.success.close')}</button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="p-8 md:p-12">

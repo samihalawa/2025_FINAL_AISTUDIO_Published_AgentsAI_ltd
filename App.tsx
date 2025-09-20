@@ -17,7 +17,7 @@ declare global {
 
 const App: React.FC = () => {
   const { t, language } = useTranslation();
-  const { PROJECT_DETAILS, PAGE_SECTIONS, NAV_LINKS, getPageContext } = getPageContent(language);
+  const { PROJECT_DETAILS, PAGE_SECTIONS, NAV_LINKS, BLOG_SECTION, getPageContext } = getPageContent(language);
   const { about, summary, roadmap, whyInvest } = PAGE_SECTIONS;
 
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -128,7 +128,7 @@ const App: React.FC = () => {
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-zinc-50 to-zinc-400">{t('mainPage.header.title')}</h1>
                 <p className="text-xl md:text-3xl text-zinc-400 mb-10">{t('mainPage.header.subtitle')}</p>
                 <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-lg text-zinc-400">
-                    <span className="flex items-center gap-2"><i data-lucide="map-pin" className="w-5 h-5 text-emerald-400"></i>London, UK</span>
+                 <span className="flex items-center gap-2"><i data-lucide="map-pin" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.location')}</span>
                     <span className="flex items-center gap-2"><i data-lucide="shield-check" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.regNo')}: 13374242</span>
                     <span className="flex items-center gap-2"><i data-lucide="mail" className="w-5 h-5 text-emerald-400"></i>hello@agentsai.ltd</span>
                 </div>
@@ -225,19 +225,64 @@ const App: React.FC = () => {
                     ))}
                 </div>
             </section>
+
+            <section id="blog" className="my-28 scroll-mt-24">
+                <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 to-zinc-400">{BLOG_SECTION.title}</h2>
+                <p className="text-zinc-400 text-lg max-w-3xl mx-auto mb-12 text-center">{BLOG_SECTION.intro}</p>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {BLOG_SECTION.posts.map(post => {
+                        const postContext = `${post.title}. ${post.excerpt} ${post.insight}`;
+                        const isActive = activeContent === postContext;
+                        return (
+                            <article
+                                key={post.title}
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => handleContentClick(postContext)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        handleContentClick(postContext);
+                                    }
+                                }}
+                                className={`p-8 rounded-2xl transition-all duration-300 border ${isActive ? 'bg-zinc-800/90 border-emerald-500/60 shadow-lg shadow-emerald-900/20' : 'bg-zinc-900/50 border-zinc-800 hover:bg-zinc-800 hover:border-emerald-500/30 hover:-translate-y-1'}`}
+                                aria-label={`${BLOG_SECTION.title}: ${post.title}`}
+                            >
+                                <div className="flex items-center justify-between text-xs uppercase tracking-wider text-emerald-400/80 mb-4">
+                                    <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 font-semibold">{post.category}</span>
+                                    <span className="text-zinc-500 font-mono">{post.date}</span>
+                                </div>
+                                <h3 className="text-2xl font-bold text-white mb-3 leading-tight">{post.title}</h3>
+                                <p className="text-zinc-400 text-sm leading-relaxed mb-4">{post.excerpt}</p>
+                                <p className="text-emerald-400/90 text-sm font-semibold mb-6">{post.insight}</p>
+                                <button type="button"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleContentClick(postContext);
+                                    }}
+                                    className="inline-flex items-center text-emerald-400 hover:text-emerald-300 text-sm font-semibold transition-colors"
+                                >
+                                    {BLOG_SECTION.ctaLabel}
+                                    <i data-lucide="arrow-up-right" className="w-4 h-4 ml-2"></i>
+                                </button>
+                            </article>
+                        );
+                    })}
+                </div>
+            </section>
             
             <section id="cta" className="my-28 text-center scroll-mt-24">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 to-zinc-400">{t('mainPage.cta.title')}</h2>
                 <p className="text-zinc-400 text-lg max-w-3xl mx-auto mb-10">{t('mainPage.cta.description')}</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                     <button
+                     <button type="button"
                         onClick={() => window.dispatchEvent(new CustomEvent('open-chatbot'))}
                         className="btn-secondary text-lg px-8 py-3"
                     >
                         <i data-lucide="message-circle" className="w-6 h-6 mr-3"></i>
                         {t('mainPage.cta.chatButton')}
                     </button>
-                    <button 
+                    <button type="button" 
                         onClick={() => setIsContactModalOpen(true)}
                         className="btn-primary text-lg px-8 py-3"
                     >

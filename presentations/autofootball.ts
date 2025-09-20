@@ -155,21 +155,21 @@ export const AUTOFOOTBALL_SLIDES_EN = [
                 <p style="font-size: 2.5em; font-weight: 800; margin: 0.5em 0;"><span class="metric-value" style="color: hsl(var(--foreground));">$0</span></p>
                 <p style="flex-grow: 0; margin-bottom: 1em;">Essential tools for beginners.</p>
                 <ul style="font-size: 0.9em; text-align: left; list-style: '✔ ' inside; margin-bottom: 1.5em; color: hsl(var(--muted-foreground));"><li>Basic Analytics</li><li>Up to 15 Players</li><li>Basic Tactical Board</li></ul>
-                <button class="cta-button cta-button-secondary" style="width: 100%;">Start for Free</button>
+                <button type="button" class="cta-button cta-button-secondary" style="width: 100%;">Start for Free</button>
             </div>
             <div class="card" style="text-align: center; border-color: hsl(var(--primary)); transform: scale(1.05);">
                 <h3>Pro</h3>
                 <p style="font-size: 2.5em; font-weight: 800; margin: 0.5em 0;"><span class="metric-value">$29</span>/mo</p>
                 <p style="flex-grow: 0; margin-bottom: 1em;">For serious coaches needing advanced insights.</p>
                 <ul style="font-size: 0.9em; text-align: left; list-style: '✔ ' inside; margin-bottom: 1.5em; color: hsl(var(--muted-foreground));"><li>Advanced Analytics</li><li>Up to 50 Players</li><li>Video Analysis Tools</li></ul>
-                <button class="cta-button" style="width: 100%;">Start Pro Trial</button>
+                <button type="button" class="cta-button" style="width: 100%;">Start Pro Trial</button>
             </div>
             <div class="card" style="text-align: center;">
                 <h3>Enterprise</h3>
                 <p style="font-size: 2.5em; font-weight: 800; margin: 0.5em 0;"><span class="metric-value">$99</span>/mo</p>
                 <p style="flex-grow: 0; margin-bottom: 1em;">For professional clubs and academies.</p>
                 <ul style="font-size: 0.9em; text-align: left; list-style: '✔ ' inside; margin-bottom: 1.5em; color: hsl(var(--muted-foreground));"><li>Unlimited Players</li><li>Multi-team Management</li><li>Custom Integrations</li></ul>
-                <button class="cta-button cta-button-secondary" style="width: 100%;">Contact Sales</button>
+                <button type="button" class="cta-button cta-button-secondary" style="width: 100%;">Contact Sales</button>
             </div>
         </div>
     </div>
@@ -341,21 +341,21 @@ export const AUTOFOOTBALL_SLIDES_ES = [
                 <p style="font-size: 2.5em; font-weight: 800; margin: 0.5em 0;"><span class="metric-value" style="color: hsl(var(--foreground));">$0</span></p>
                 <p style="flex-grow: 0; margin-bottom: 1em;">Herramientas esenciales para principiantes.</p>
                 <ul style="font-size: 0.9em; text-align: left; list-style: '✔ ' inside; margin-bottom: 1.5em; color: hsl(var(--muted-foreground));"><li>Análisis Básico</li><li>Hasta 15 Jugadores</li><li>Pizarra Táctica Básica</li></ul>
-                <button class="cta-button cta-button-secondary" style="width: 100%;">Comenzar Gratis</button>
+                <button type="button" class="cta-button cta-button-secondary" style="width: 100%;">Comenzar Gratis</button>
             </div>
             <div class="card" style="text-align: center; border-color: hsl(var(--primary)); transform: scale(1.05);">
                 <h3>Pro</h3>
                 <p style="font-size: 2.5em; font-weight: 800; margin: 0.5em 0;"><span class="metric-value">$29</span>/mes</p>
                 <p style="flex-grow: 0; margin-bottom: 1em;">Para entrenadores serios que necesitan información avanzada.</p>
                 <ul style="font-size: 0.9em; text-align: left; list-style: '✔ ' inside; margin-bottom: 1.5em; color: hsl(var(--muted-foreground));"><li>Análisis Avanzado</li><li>Hasta 50 Jugadores</li><li>Herramientas de Análisis de Video</li></ul>
-                <button class="cta-button" style="width: 100%;">Iniciar Prueba Pro</button>
+                <button type="button" class="cta-button" style="width: 100%;">Iniciar Prueba Pro</button>
             </div>
             <div class="card" style="text-align: center;">
                 <h3>Empresarial</h3>
                 <p style="font-size: 2.5em; font-weight: 800; margin: 0.5em 0;"><span class="metric-value">$99</span>/mes</p>
                 <p style="flex-grow: 0; margin-bottom: 1em;">Para clubes profesionales y academias.</p>
                 <ul style="font-size: 0.9em; text-align: left; list-style: '✔ ' inside; margin-bottom: 1.5em; color: hsl(var(--muted-foreground));"><li>Jugadores Ilimitados</li><li>Gestión de Múltiples Equipos</li><li>Integraciones Personalizadas</li></ul>
-                <button class="cta-button cta-button-secondary" style="width: 100%;">Contactar Ventas</button>
+                <button type="button" class="cta-button cta-button-secondary" style="width: 100%;">Contactar Ventas</button>
             </div>
         </div>
     </div>
@@ -527,21 +527,21 @@ export const AUTOFOOTBALL_SLIDES_ZH = [
                 <p style="font-size: 2.5em; font-weight: 800; margin: 0.5em 0;"><span class="metric-value" style="color: hsl(var(--foreground));">$0</span></p>
                 <p style="flex-grow: 0; margin-bottom: 1em;">适合初学者的基本工具。</p>
                 <ul style="font-size: 0.9em; text-align: left; list-style: '✔ ' inside; margin-bottom: 1.5em; color: hsl(var(--muted-foreground));"><li>基本分析</li><li>最多15名球员</li><li>基础战术板</li></ul>
-                <button class="cta-button cta-button-secondary" style="width: 100%;">免费开始</button>
+                <button type="button" class="cta-button cta-button-secondary" style="width: 100%;">免费开始</button>
             </div>
             <div class="card" style="text-align: center; border-color: hsl(var(--primary)); transform: scale(1.05);">
                 <h3>专业版</h3>
                 <p style="font-size: 2.5em; font-weight: 800; margin: 0.5em 0;"><span class="metric-value">$29</span>/月</p>
                 <p style="flex-grow: 0; margin-bottom: 1em;">为需要高级见解的认真教练设计。</p>
                 <ul style="font-size: 0.9em; text-align: left; list-style: '✔ ' inside; margin-bottom: 1.5em; color: hsl(var(--muted-foreground));"><li>高级分析</li><li>最多50名球员</li><li>视频分析工具</li></ul>
-                <button class="cta-button" style="width: 100%;">开始专业试用</button>
+                <button type="button" class="cta-button" style="width: 100%;">开始专业试用</button>
             </div>
             <div class="card" style="text-align: center;">
                 <h3>企业版</h3>
                 <p style="font-size: 2.5em; font-weight: 800; margin: 0.5em 0;"><span class="metric-value">$99</span>/月</p>
                 <p style="flex-grow: 0; margin-bottom: 1em;">适用于职业俱乐部和青训营。</p>
                 <ul style="font-size: 0.9em; text-align: left; list-style: '✔ ' inside; margin-bottom: 1.5em; color: hsl(var(--muted-foreground));"><li>无限球员</li><li>多团队管理</li><li>自定义集成</li></ul>
-                <button class="cta-button cta-button-secondary" style="width: 100%;">联系销售</button>
+                <button type="button" class="cta-button cta-button-secondary" style="width: 100%;">联系销售</button>
             </div>
         </div>
     </div>

@@ -38,8 +38,7 @@ const PresentationSelector: React.FC<PresentationSelectorProps> = ({ presentatio
 
   return (
     <div className="relative w-48" ref={wrapperRef}>
-      <button
-        type="button"
+      <button type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="group appearance-none bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none block w-full p-2.5 transition-colors duration-200 flex justify-between items-center"
         aria-haspopup="listbox"

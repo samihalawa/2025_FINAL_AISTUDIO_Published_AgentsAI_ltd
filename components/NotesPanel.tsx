@@ -18,7 +18,7 @@ const NotesPanel: React.FC<NotesPanelProps> = ({ isOpen, onClose, onGenerate, no
     <aside className="fixed top-0 right-0 h-full w-96 bg-zinc-900 border-l border-zinc-800 z-30 shadow-2xl animate-slide-in-right flex flex-col">
         <header className="flex items-center justify-between p-4 border-b border-zinc-800 flex-shrink-0">
             <h2 className="text-lg font-bold text-white">{t('presentationsPage.notes.title')}</h2>
-            <button onClick={onClose} className="p-2 rounded-full text-zinc-400 hover:bg-zinc-800 transition-colors" aria-label={t('presentationsPage.notes.close')}>
+            <button type="button" onClick={onClose} className="p-2 rounded-full text-zinc-400 hover:bg-zinc-800 transition-colors" aria-label={t('presentationsPage.notes.close')}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
                 </svg>
@@ -39,7 +39,7 @@ const NotesPanel: React.FC<NotesPanelProps> = ({ isOpen, onClose, onGenerate, no
                 />
             ) : (
                 <div className="flex flex-col items-center justify-center h-full text-center">
-                    <button 
+                    <button type="button" 
                         onClick={onGenerate} 
                         disabled={isGenerating}
                         className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-4 rounded-lg transition-colors disabled:bg-zinc-600 disabled:cursor-not-allowed flex items-center gap-2"

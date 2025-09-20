@@ -80,8 +80,8 @@ export const RADIOLOGY_AI_SLIDES_EN = [
                     </div>
                 </div>
                 <div class="mt-4 flex items-center justify-end gap-3">
-                     <button style="background: hsl(var(--card)) !important; border: 1px solid hsl(var(--border)) !important; color: hsl(var(--foreground)) !important; padding: 0.6em 1.2em; border-radius: 0.5rem; font-weight: 600;">Edit</button>
-                     <button>Approve & Sign</button>
+                     <button type="button" style="background: hsl(var(--card)) !important; border: 1px solid hsl(var(--border)) !important; color: hsl(var(--foreground)) !important; padding: 0.6em 1.2em; border-radius: 0.5rem; font-weight: 600;">Edit</button>
+                     <button type="button">Approve & Sign</button>
                 </div>
             </div>
         </div>
@@ -193,8 +193,8 @@ export const RADIOLOGY_AI_SLIDES_ES = [
                     </div>
                 </div>
                 <div class="mt-4 flex items-center justify-end gap-3">
-                     <button style="background: hsl(var(--card)) !important; border: 1px solid hsl(var(--border)) !important; color: hsl(var(--foreground)) !important; padding: 0.6em 1.2em; border-radius: 0.5rem; font-weight: 600;">Editar</button>
-                     <button>Aprobar y Firmar</button>
+                     <button type="button" style="background: hsl(var(--card)) !important; border: 1px solid hsl(var(--border)) !important; color: hsl(var(--foreground)) !important; padding: 0.6em 1.2em; border-radius: 0.5rem; font-weight: 600;">Editar</button>
+                     <button type="button">Aprobar y Firmar</button>
                 </div>
             </div>
         </div>
@@ -306,8 +306,8 @@ export const RADIOLOGY_AI_SLIDES_ZH = [
                     </div>
                 </div>
                 <div class="mt-4 flex items-center justify-end gap-3">
-                     <button style="background: hsl(var(--card)) !important; border: 1px solid hsl(var(--border)) !important; color: hsl(var(--foreground)) !important; padding: 0.6em 1.2em; border-radius: 0.5rem; font-weight: 600;">编辑</button>
-                     <button>批准并签署</button>
+                     <button type="button" style="background: hsl(var(--card)) !important; border: 1px solid hsl(var(--border)) !important; color: hsl(var(--foreground)) !important; padding: 0.6em 1.2em; border-radius: 0.5rem; font-weight: 600;">编辑</button>
+                     <button type="button">批准并签署</button>
                 </div>
             </div>
         </div>

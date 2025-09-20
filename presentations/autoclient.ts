@@ -67,7 +67,7 @@ export const AUTOCLIENT_SLIDES_EN = [
                             Find me <span class="highlight">CTOs</span> in <span class="highlight">FinTech</span> companies in <span class="highlight">Europe</span> with recent funding...
                         </div>
                     </div>
-                    <button style="width:100%; padding: 0.8em; display: flex; align-items: center; justify-content: center; gap: 0.5em;">
+                    <button type="button" style="width:100%; padding: 0.8em; display: flex; align-items: center; justify-content: center; gap: 0.5em;">
                         <svg xmlns="http://www.w3.org/2000/svg" style="width:1.2em; height:1.2em;" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                         Start Discovery
                     </button>
@@ -117,8 +117,8 @@ export const AUTOCLIENT_SLIDES_EN = [
                         </div>
                     </div>
                     <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
-                        <button style="background: hsl(var(--card)); border: 1px solid hsl(var(--border)); padding: 0.5em 1em; border-radius: 0.5rem; font-weight: 600;">Edit</button>
-                        <button style="padding: 0.5em 1em;">Send</button>
+                        <button type="button" style="background: hsl(var(--card)); border: 1px solid hsl(var(--border)); padding: 0.5em 1em; border-radius: 0.5rem; font-weight: 600;">Edit</button>
+                        <button type="button" style="padding: 0.5em 1em;">Send</button>
                     </div>
                 </div>
             </div>
@@ -276,7 +276,7 @@ export const AUTOCLIENT_SLIDES_ES = [
                             Encuéntrame <span class="highlight">CTOs</span> en empresas <span class="highlight">FinTech</span> en <span class="highlight">Europa</span> con financiación reciente...
                         </div>
                     </div>
-                    <button style="width:100%; padding: 0.8em; display: flex; align-items: center; justify-content: center; gap: 0.5em;">
+                    <button type="button" style="width:100%; padding: 0.8em; display: flex; align-items: center; justify-content: center; gap: 0.5em;">
                         <svg xmlns="http://www.w3.org/2000/svg" style="width:1.2em; height:1.2em;" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                         Iniciar Descubrimiento
                     </button>
@@ -326,8 +326,8 @@ export const AUTOCLIENT_SLIDES_ES = [
                         </div>
                     </div>
                     <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
-                        <button style="background: hsl(var(--card)); border: 1px solid hsl(var(--border)); padding: 0.5em 1em; border-radius: 0.5rem; font-weight: 600;">Editar</button>
-                        <button style="padding: 0.5em 1em;">Enviar</button>
+                        <button type="button" style="background: hsl(var(--card)); border: 1px solid hsl(var(--border)); padding: 0.5em 1em; border-radius: 0.5rem; font-weight: 600;">Editar</button>
+                        <button type="button" style="padding: 0.5em 1em;">Enviar</button>
                     </div>
                 </div>
             </div>
@@ -485,7 +485,7 @@ export const AUTOCLIENT_SLIDES_ZH = [
                             为我找到<span class="highlight">欧洲</span><span class="highlight">金融科技</span>公司中最近获得融资的<span class="highlight">CTO</span>...
                         </div>
                     </div>
-                    <button style="width:100%; padding: 0.8em; display: flex; align-items: center; justify-content: center; gap: 0.5em;">
+                    <button type="button" style="width:100%; padding: 0.8em; display: flex; align-items: center; justify-content: center; gap: 0.5em;">
                         <svg xmlns="http://www.w3.org/2000/svg" style="width:1.2em; height:1.2em;" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                         开始发现
                     </button>
@@ -535,8 +535,8 @@ export const AUTOCLIENT_SLIDES_ZH = [
                         </div>
                     </div>
                     <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
-                        <button style="background: hsl(var(--card)); border: 1px solid hsl(var(--border)); padding: 0.5em 1em; border-radius: 0.5rem; font-weight: 600;">编辑</button>
-                        <button style="padding: 0.5em 1em;">发送</button>
+                        <button type="button" style="background: hsl(var(--card)); border: 1px solid hsl(var(--border)); padding: 0.5em 1em; border-radius: 0.5rem; font-weight: 600;">编辑</button>
+                        <button type="button" style="padding: 0.5em 1em;">发送</button>
                     </div>
                 </div>
             </div>

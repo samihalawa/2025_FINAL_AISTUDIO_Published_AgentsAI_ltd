@@ -36,7 +36,7 @@ const Navigation: React.FC<NavigationProps> = ({ onPrev, onNext, onSelect, isFir
 
   return (
     <div className="flex items-center space-x-4 p-2 rounded-full bg-zinc-900/70 border border-zinc-700/50 shadow-lg backdrop-blur-md">
-      <button
+      <button type="button"
         onClick={onPrev}
         disabled={isFirst}
         aria-label={t('presentationsPage.nav.prev')}
@@ -63,7 +63,7 @@ const Navigation: React.FC<NavigationProps> = ({ onPrev, onNext, onSelect, isFir
           </div>
       </div>
       
-      <button
+      <button type="button"
         onClick={onNext}
         disabled={isLast}
         aria-label={t('presentationsPage.nav.next')}
@@ -74,7 +74,7 @@ const Navigation: React.FC<NavigationProps> = ({ onPrev, onNext, onSelect, isFir
 
       <div className="h-6 w-px bg-zinc-700/50"></div>
       
-      <button
+      <button type="button"
         onClick={onToggleGrid}
         aria-label={t('presentationsPage.nav.grid')}
         className={`${buttonBaseClasses} ${enabledClasses}`}
@@ -82,7 +82,7 @@ const Navigation: React.FC<NavigationProps> = ({ onPrev, onNext, onSelect, isFir
         <i data-lucide="layout-grid" className="w-5 h-5"></i>
       </button>
       
-      <button
+      <button type="button"
         onClick={onToggleNotes}
         aria-label={t('presentationsPage.nav.notes')}
         className={`${buttonBaseClasses} ${isNotesOpen ? 'bg-emerald-500 hover:bg-emerald-400 text-white' : enabledClasses}`}
