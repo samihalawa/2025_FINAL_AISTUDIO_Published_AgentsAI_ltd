@@ -129,8 +129,9 @@ const App: React.FC = () => {
                 <p className="text-xl md:text-3xl text-zinc-400 mb-10">{t('mainPage.header.subtitle')}</p>
                 <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-lg text-zinc-400">
                  <span className="flex items-center gap-2"><i data-lucide="map-pin" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.location')}</span>
-                    <span className="flex items-center gap-2"><i data-lucide="shield-check" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.regNo')}: 13374242</span>
-                    <span className="flex items-center gap-2"><i data-lucide="mail" className="w-5 h-5 text-emerald-400"></i>hello@agentsai.ltd</span>
+                    <span className="flex items-center gap-2"><i data-lucide="shield-check" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.regNo')}: 16570822</span>
+                    <span className="flex items-center gap-2"><i data-lucide="phone" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.tel')}: +44 7883306011</span>
+                    <span className="flex items-center gap-2"><i data-lucide="mail" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.email')}: info@agentsai.ltd</span>
                 </div>
             </div>
         </div>
@@ -314,7 +315,9 @@ const App: React.FC = () => {
       <footer className="bg-transparent border-t border-zinc-800/50">
         <div className="container mx-auto px-6 py-12 text-center text-zinc-500">
             <p className="mb-2">{t('mainPage.footer.copyright')}</p>
-            <p className="mb-4">{t('mainPage.footer.address')}</p>
+            <p className="mb-1">{t('mainPage.footer.address')}</p>
+            <p className="mb-1">{t('mainPage.footer.contact')}</p>
+            <p className="mb-4">{t('mainPage.footer.legal')}</p>
             <p className="text-sm max-w-3xl mx-auto"><span className="font-bold">{t('mainPage.footer.confidentialityTitle')}</span> {t('mainPage.footer.confidentialityText')}</p>
         </div>
       </footer>
