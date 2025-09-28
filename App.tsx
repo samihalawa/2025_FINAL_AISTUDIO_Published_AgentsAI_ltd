@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StickyNav from './components/StickyNav';
 import ContactModal from './components/ContactModal';
+import Newsletter from './components/Newsletter';
 import { getPageContent } from './pageContent';
 import { useTranslation } from './hooks/useTranslation';
 
@@ -228,9 +229,14 @@ const App: React.FC = () => {
         </section>
       </main>
 
-      <footer className="bg-transparent border-t border-zinc-800/50">
+            <footer className="bg-transparent border-t border-zinc-800/50">
         <div className="container mx-auto px-6 py-12 text-center text-zinc-500">
-            <p className="mb-2">{t('mainPage.footer.copyright')}</p>
+            <div className="max-w-xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4">{t('mainPage.newsletter.title')}</h3>
+              <p className="text-zinc-400 mb-6">{t('mainPage.newsletter.description')}</p>
+              <Newsletter />
+            </div>
+            <p className="mb-2 mt-12 pt-8 border-t border-zinc-800/50">{t('mainPage.footer.copyright')}</p>
             <p className="mb-1">{t('mainPage.footer.address')}</p>
             <p className="mb-1">{t('mainPage.footer.contact')}</p>
             <p className="mb-4">{t('mainPage.footer.legal')}</p>

@@ -84,6 +84,12 @@ const content = {
                     insight: 'Accelerates European commercialization roadmap and strengthens pricing power with hospitals demanding evidence-backed automation.'
                 }
             ]
+        },
+        mainPage: {
+            newsletter: {
+                title: 'Subscribe for Strategic Updates',
+                description: 'Receive investor-focused intelligence briefings and major milestone alerts directly to your inbox.'
+            }
         }
     },
     es: {
@@ -164,6 +170,12 @@ const content = {
                     insight: 'Acelera la hoja de ruta de comercialización europea y refuerza el poder de fijación de precios con hospitales que exigen automatización respaldada por evidencia.'
                 }
             ]
+        },
+        mainPage: {
+            newsletter: {
+                title: 'Suscríbase para recibir actualizaciones estratégicas',
+                description: 'Reciba informes de inteligencia para inversores y alertas de hitos importantes directamente en su bandeja de entrada.'
+            }
         }
     },
     zh: {
@@ -244,6 +256,12 @@ const content = {
                     insight: '加速欧洲商业化节奏，并以有证据支撑的自动化能力增强医院端的议价空间。'
                 }
             ]
+        },
+        mainPage: {
+            newsletter: {
+                title: '订阅以获取战略更新',
+                description: '将面向投资者的情报简报和重大里程碑提醒直接发送到您的收件箱。'
+            }
         }
     }
 };

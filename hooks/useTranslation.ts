@@ -23,6 +23,8 @@ export const translations = {
     'mainPage.footer.legal': 'Registered in England and Wales as AGENTS AI Limited (Reg. No: 16570822). Associated entity: PIME AI LTD.',
     'mainPage.footer.confidentialityTitle': 'Confidentiality Notice:',
     'mainPage.footer.confidentialityText': 'This document contains confidential information of AGENTS AI Limited and is intended only for the designated recipients. Any reproduction, distribution, or disclosure of any part of this document without prior written consent from the company is strictly prohibited.',
+    'mainPage.newsletter.title': 'Subscribe for Strategic Updates',
+    'mainPage.newsletter.description': 'Receive investor-focused intelligence briefings and major milestone alerts directly to your inbox.',
 
     'presentationsPage.title': 'Project Portfolio - AGENTS AI Limited',
     'presentationsPage.header.main': 'AGENTS AI Limited',
@@ -135,6 +137,8 @@ Based on your analysis, provide the following in JSON format:
     'mainPage.footer.legal': 'Registrada en Inglaterra y Gales como AGENTS AI Limited (Nº Reg.: 16570822). Entidad asociada: PIME AI LTD.',
     'mainPage.footer.confidentialityTitle': 'Aviso de Confidencialidad:',
     'mainPage.footer.confidentialityText': 'Este documento contiene información confidencial de AGENTS AI Limited y está destinado únicamente a los destinatarios designados. Queda estrictamente prohibida cualquier reproducción, distribución o divulgación de cualquier parte de este documento sin el consentimiento previo por escrito de la empresa.',
+    'mainPage.newsletter.title': 'Suscríbase para recibir actualizaciones estratégicas',
+    'mainPage.newsletter.description': 'Reciba informes de inteligencia para inversores y alertas de hitos importantes directamente en su bandeja de entrada.',
 
     'presentationsPage.title': 'Portafolio de Proyectos - AGENTS AI Limited',
     'presentationsPage.header.main': 'AGENTS AI Limited',
@@ -247,6 +251,8 @@ Basado en tu análisis, proporciona lo siguiente en formato JSON:
     'mainPage.footer.legal': '在英格兰和威尔士注册为 AGENTS AI Limited（注册号：16570822）。关联实体：PIME AI LTD。',
     'mainPage.footer.confidentialityTitle': '保密声明:',
     'mainPage.footer.confidentialityText': '本文件包含 AGENTS AI Limited 的机密信息，仅供指定收件人参考。未经本公司事先书面同意，严禁对本文件的任何部分进行复制、分发或披露。',
+    'mainPage.newsletter.title': '订阅以获取战略更新',
+    'mainPage.newsletter.description': '将面向投资者的情报简报和重大里程碑提醒直接发送到您的收件箱。',
 
     'presentationsPage.title': '项目组合 - AGENTS AI Limited',
     'presentationsPage.header.main': 'AGENTS AI Limited',
