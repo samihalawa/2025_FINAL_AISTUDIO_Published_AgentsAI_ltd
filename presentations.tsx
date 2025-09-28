@@ -5,35 +5,44 @@ import SlideViewer from './components/SlideViewer';
 import Navigation from './components/Navigation';
 import GridView from './components/GridView';
 import NotesPanel from './components/NotesPanel';
-import { generateSpeakerNotes } from './services/gemini';
 import { getPageContent } from './pageContent';
 import Spinner from './components/Spinner';
 import ContactModal from './components/ContactModal';
-import Chatbot from './components/Chatbot';
 import { LanguageProvider, useTranslation } from './hooks/useTranslation';
 import LanguageSwitcher from './components/LanguageSwitcher';
 
 declare global {
     interface Window {
-        lucide: any;
+        lucide: {
+            createIcons: () => void;
+        };
     }
 }
 
 const PageHeader: React.FC = () => {
     const { t } = useTranslation();
     return (
-        <header className="py-6 px-4 sm:px-6 md:px-8 flex justify-between items-center border-b border-zinc-800/50 bg-zinc-950/30 backdrop-blur-sm">
-            <a href="./index.html" className="flex items-center gap-2 sm:gap-3 group">
-                <h1 className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-zinc-50 to-zinc-400 group-hover:from-white group-hover:to-zinc-300 transition-colors">{t('presentationsPage.header.main')}</h1>
-                <span className="text-xl sm:text-2xl font-normal text-zinc-600">/</span>
-                <span className="text-xl sm:text-2xl font-semibold text-zinc-300">{t('presentationsPage.header.sub')}</span>
-            </a>
-            <div className="flex items-center gap-4">
-                <LanguageSwitcher />
-                <a href="./index.html" className="btn-secondary text-sm sm:text-base px-4 sm:px-6 py-2">
-                  <i data-lucide="arrow-left" className="w-4 h-4 mr-2"></i>
-                  {t('presentationsPage.header.back')}
-                </a>
+        <header className="bg-white/5 backdrop-blur-md border-b border-white/10 sticky top-0 z-40">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex justify-between items-center h-16">
+                    <a href="./index.html" className="flex items-center gap-3 group">
+                        <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="presentation" className="w-5 h-5 text-white"></i>
+                        </div>
+                        <div className="flex items-baseline gap-2">
+                            <h1 className="text-xl font-bold text-white">{t('presentationsPage.header.main')}</h1>
+                            <span className="text-zinc-400">/</span>
+                            <span className="text-lg font-medium text-zinc-300">{t('presentationsPage.header.sub')}</span>
+                        </div>
+                    </a>
+                    <div className="flex items-center gap-3">
+                        <LanguageSwitcher />
+                        <a href="./index.html" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-lg transition-all duration-200">
+                            <i data-lucide="arrow-left" className="w-4 h-4"></i>
+                            {t('presentationsPage.header.back')}
+                        </a>
+                    </div>
+                </div>
             </div>
         </header>
     );
@@ -42,7 +51,7 @@ const PageHeader: React.FC = () => {
 
 const PresentationsApp: React.FC = () => {
   const { t, language } = useTranslation();
-  const { PROJECT_DETAILS, PRESENTATIONS, getPageContext } = getPageContent(language);
+  const { PROJECT_DETAILS, PRESENTATIONS } = getPageContent(language);
 
   const [activeDeckIndex, setActiveDeckIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
@@ -61,12 +70,10 @@ const PresentationsApp: React.FC = () => {
   });
 
   const playerRef = useRef<HTMLDivElement>(null);
-  
+
   const activeDeck = PRESENTATIONS[activeDeckIndex];
   const slides = activeDeck.slides;
 
-  const fullPageContext = getPageContext();
-  const systemInstruction = t('chatbot.systemInstruction', { context: fullPageContext });
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -78,7 +85,7 @@ const PresentationsApp: React.FC = () => {
 
     const newDeckSlides = PRESENTATIONS[index].slides;
     const validSlideIndex = Math.max(0, Math.min(slideIndex, newDeckSlides.length - 1));
-    
+
     setActiveDeckIndex(index);
     setCurrentSlideIndex(validSlideIndex);
     setIsLoading(true);
@@ -94,7 +101,7 @@ const PresentationsApp: React.FC = () => {
     url.searchParams.set('slide', validSlideIndex.toString());
     window.history.pushState({}, '', url);
   }, [activeDeckIndex, currentSlideIndex, slideState.slideA.content, PRESENTATIONS]);
-  
+
   useEffect(() => {
       const params = new URLSearchParams(window.location.search);
       const deckIndex = parseInt(params.get('deck') || '0', 10);
@@ -103,7 +110,7 @@ const PresentationsApp: React.FC = () => {
       const validDeckIndex = (deckIndex >= 0 && deckIndex < PRESENTATIONS.length) ? deckIndex : 0;
       handleDeckSelect(validDeckIndex, slideIndex);
   }, [handleDeckSelect, PRESENTATIONS]);
-  
+
   useEffect(() => {
     if (window.lucide) {
       window.lucide.createIcons();
@@ -149,7 +156,7 @@ const PresentationsApp: React.FC = () => {
 
   const updateSlide = useCallback((newIndex: number) => {
     if (newIndex === currentSlideIndex || newIndex < 0 || newIndex >= slides.length) return;
-    
+
     const newContent = slides[newIndex];
     if (slideState.key === 'A') {
       setSlideState(s => ({...s, key: 'B', slideB: { content: newContent, loaded: false }}));
@@ -157,7 +164,7 @@ const PresentationsApp: React.FC = () => {
       setSlideState(s => ({...s, key: 'A', slideA: { content: newContent, loaded: false }}));
     }
     setCurrentSlideIndex(newIndex);
-    
+
     const url = new URL(window.location.href);
     url.searchParams.set('slide', newIndex.toString());
     window.history.pushState({}, '', url);
@@ -170,19 +177,17 @@ const PresentationsApp: React.FC = () => {
   const handleSlideLoaded = (key: 'slideA' | 'slideB') => setSlideState(s => ({ ...s, [key]: { ...s[key], loaded: true } }));
 
   const handleGenerateNotes = useCallback(async () => {
+    // AI notes generation disabled. Provide a static placeholder.
     const cacheKey = `${activeDeckIndex}-${currentSlideIndex}`;
     if (speakerNotesCache[cacheKey]) return;
     setIsGeneratingNotes(true);
     try {
-        const notes = await generateSpeakerNotes(slides[currentSlideIndex], language);
-        setSpeakerNotesCache(prev => ({ ...prev, [cacheKey]: notes }));
-    } catch (error) {
-        console.error("Failed to generate speaker notes:", error);
-        setSpeakerNotesCache(prev => ({ ...prev, [cacheKey]: t('presentationsPage.notes.error.generic') }));
+      const placeholder = t('presentationsPage.notes.error.noApiKey');
+      setSpeakerNotesCache(prev => ({ ...prev, [cacheKey]: placeholder }));
     } finally {
-        setIsGeneratingNotes(false);
+      setIsGeneratingNotes(false);
     }
-  }, [activeDeckIndex, currentSlideIndex, slides, speakerNotesCache, language, t]);
+  }, [activeDeckIndex, currentSlideIndex, speakerNotesCache, t]);
 
   const toggleFullScreen = useCallback(() => {
     if (!playerRef.current) return;
@@ -194,11 +199,11 @@ const PresentationsApp: React.FC = () => {
       setIsFullScreen(false);
     }
   }, []);
-  
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (document.querySelector('input:focus, textarea:focus, select:focus')) return;
-      
+
       switch(event.key) {
         case 'ArrowRight': handleNext(); break;
         case 'ArrowLeft': handlePrev(); break;
@@ -228,69 +233,106 @@ const PresentationsApp: React.FC = () => {
     <>
       <div className="min-h-screen flex flex-col bg-zinc-950">
           <PageHeader />
-          <main className="flex-grow container mx-auto px-6 md:px-12 py-10 sm:py-16 animate-fade-in">
-              <div className="flex flex-col lg:flex-row gap-8">
-                  <div className="lg:w-1/3 flex flex-col gap-4">
-                      {PROJECT_DETAILS.map((deck, index) => {
-                          const isActive = index === activeDeckIndex;
-                          return (
-                              <div key={deck.name} 
-                                  onClick={() => handleDeckSelect(index)}
-                                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleDeckSelect(index); } }}
-                                  role="button"
-                                  tabIndex={0}
-                                  aria-label={`${t('mainPage.portfolio.viewAria')} ${deck.name}`}
-                                  aria-pressed={isActive}
-                                  className={`p-6 rounded-lg cursor-pointer transition-all duration-300 border-l-4 flex items-start gap-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-950 focus:ring-emerald-400 ${isActive ? 'bg-zinc-800 border-emerald-500 shadow-lg shadow-emerald-900/30' : 'bg-zinc-900/50 border-transparent hover:bg-zinc-800 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-900/20'}`}>
-                                  <div className={`flex-shrink-0 w-12 h-12 bg-zinc-800 rounded-lg flex items-center justify-center transition-colors ${isActive ? 'text-emerald-400' : 'text-zinc-400 group-hover:text-emerald-400'}`}>
-                                    <i data-lucide={deck.icon} className="w-6 h-6"></i>
-                                  </div>
-                                  <div>
-                                      <h3 className={`text-xl font-bold mb-1 transition-colors ${isActive ? 'text-white' : 'text-zinc-200'}`}>{deck.name}</h3>
-                                      <p className="font-semibold text-zinc-400 mb-2">{deck.subtitle}</p>
-                                      <p className="text-zinc-500 text-sm">{deck.value}</p>
-                                  </div>
-                              </div>
-                          )
-                      })}
+          <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+              <div className="text-center mb-8">
+                  <h2 className="text-3xl font-bold text-white mb-2">Corporate Presentations</h2>
+                  <p className="text-zinc-400 max-w-2xl mx-auto">Explore our comprehensive portfolio of AI solutions and business presentations</p>
+              </div>
+              
+              <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                  <div className="xl:col-span-1">
+                      <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                          <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                              <i data-lucide="folder-open" className="w-5 h-5 text-emerald-400"></i>
+                              Portfolio Decks
+                          </h3>
+                          <div className="space-y-3">
+                              {PROJECT_DETAILS.map((deck, index) => {
+                                  const isActive = index === activeDeckIndex;
+                                  return (
+                                      <button
+                                          key={deck.name}
+                                          onClick={() => handleDeckSelect(index)}
+                                          className={`w-full text-left p-4 rounded-lg transition-all duration-200 border ${
+                                              isActive 
+                                                  ? 'bg-emerald-500/10 border-emerald-500/30 text-white shadow-lg shadow-emerald-900/20' 
+                                                  : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 text-zinc-300'
+                                          }`}>
+                                          <div className="flex items-start gap-3">
+                                              <div className={`mt-0.5 flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                                                  isActive ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10 text-zinc-400'
+                                              }`}>
+                                                  <i data-lucide={deck.icon} className="w-4 h-4"></i>
+                                              </div>
+                                              <div className="flex-1 min-w-0">
+                                                  <h4 className="font-semibold text-sm mb-0.5">{deck.name}</h4>
+                                                  <p className="text-xs text-zinc-400 mb-1">{deck.subtitle}</p>
+                                                  <p className="text-xs text-zinc-500">{deck.value}</p>
+                                              </div>
+                                          </div>
+                                      </button>
+                                  )
+                              })}
+                          </div>
+                      </div>
                   </div>
-                  
-                  <div ref={playerRef} className={`lg:w-2/3 bg-zinc-950/50 p-4 rounded-xl border border-zinc-800 flex flex-col justify-between transition-all duration-300 ${isFullScreen ? 'fixed inset-0 z-50 p-6' : 'relative'}`} aria-live="polite" aria-atomic="true">
-                      <h3 className="sr-only">{t('presentationsPage.viewer.ariaLabel', { project: activeDeck.title })}</h3>
-                      <div className="w-full aspect-video bg-black rounded-lg shadow-2xl shadow-black/50 ring-1 ring-white/10 relative overflow-hidden shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)]">
-                          {isLoading && (
-                            <div className="absolute inset-0 flex items-center justify-center bg-black z-30">
-                              <Spinner size="md" />
-                            </div>
-                          )}
-                          <SlideViewer htmlContent={slideState.slideA.content} isVisible={slideState.key === 'A' && !isLoading} onLoaded={() => handleSlideLoaded('slideA')} />
-                          <SlideViewer htmlContent={slideState.slideB.content} isVisible={slideState.key === 'B' && !isLoading} onLoaded={() => handleSlideLoaded('slideB')} />
-                          <button type="button" onClick={toggleFullScreen} className="absolute top-3 right-3 z-20 p-2 rounded-full text-zinc-300 bg-black/40 hover:bg-white/20 transition-colors" aria-label={t('presentationsPage.toggleFullscreen')}>
-                            {isFullScreen ? <i data-lucide="minimize-2" className="w-5 h-5"></i> : <i data-lucide="maximize-2" className="w-5 h-5"></i>}
-                          </button>
+
+                  <div className="xl:col-span-2">
+                      <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden">
+                          <div className="p-4 border-b border-white/10">
+                              <div className="flex items-center justify-between">
+                                  <div>
+                                      <h3 className="text-lg font-semibold text-white">{activeDeck.title}</h3>
+                                      <p className="text-sm text-zinc-400">
+                                          Slide {currentSlideIndex + 1} of {slides.length}
+                                      </p>
+                                  </div>
+                                  <button 
+                                      type="button" 
+                                      onClick={toggleFullScreen} 
+                                      className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+                                      aria-label={t('presentationsPage.toggleFullscreen')}
+                                  >
+                                      {isFullScreen ? <i data-lucide="minimize-2" className="w-5 h-5"></i> : <i data-lucide="maximize-2" className="w-5 h-5"></i>}
+                                  </button>
+                              </div>
+                          </div>
+                          
+                          <div ref={playerRef} className={`bg-black ${isFullScreen ? 'fixed inset-0 z-50' : ''}`} aria-live="polite" aria-atomic="true">
+                              <div className="relative aspect-video bg-black">
+                                  {isLoading && (
+                                      <div className="absolute inset-0 flex items-center justify-center bg-black z-30">
+                                          <Spinner size="md" />
+                                      </div>
+                                  )}
+                                  <SlideViewer htmlContent={slideState.slideA.content} isVisible={slideState.key === 'A' && !isLoading} onLoaded={() => handleSlideLoaded('slideA')} />
+                                  <SlideViewer htmlContent={slideState.slideB.content} isVisible={slideState.key === 'B' && !isLoading} onLoaded={() => handleSlideLoaded('slideB')} />
+                              </div>
+                          </div>
+                          
+                          <div className="p-4 border-t border-white/10">
+                              <Navigation
+                                  onPrev={handlePrev} onNext={handleNext} onSelect={handleSlideSelect}
+                                  isFirst={currentSlideIndex === 0} isLast={currentSlideIndex === slides.length - 1}
+                                  current={currentSlideIndex} total={slides.length}
+                                  onToggleGrid={() => setIsGridOpen(true)}
+                                  onToggleNotes={() => setIsNotesOpen(o => !o)}
+                                  isNotesOpen={isNotesOpen}
+                              />
+                          </div>
                       </div>
-                      <div className="mt-4">
-                        <Navigation
-                          onPrev={handlePrev} onNext={handleNext} onSelect={handleSlideSelect}
-                          isFirst={currentSlideIndex === 0} isLast={currentSlideIndex === slides.length - 1}
-                          current={currentSlideIndex} total={slides.length}
-                          onToggleGrid={() => setIsGridOpen(true)}
-                          onToggleNotes={() => setIsNotesOpen(o => !o)}
-                          isNotesOpen={isNotesOpen}
-                        />
-                      </div>
+                      
                       <GridView isOpen={isGridOpen} onClose={() => setIsGridOpen(false)} slides={slides} onSelect={handleSlideSelect} currentIndex={currentSlideIndex} />
                       <NotesPanel isOpen={isNotesOpen} onClose={() => setIsNotesOpen(false)} onGenerate={handleGenerateNotes} notes={currentNotes} isGenerating={isGeneratingNotes} />
                   </div>
               </div>
           </main>
       </div>
-      <ContactModal 
+      <ContactModal
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
         projects={PROJECT_DETAILS.map(p => p.name)}
       />
-      <Chatbot systemInstruction={systemInstruction} />
     </>
   );
 };

@@ -33,7 +33,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, projects }
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log('Form Submitted:', formData);
+    // TODO: Implement actual form submission to backend service
     setIsSubmitted(true);
   };
 
@@ -47,21 +47,21 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, projects }
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center animate-fade-in-backdrop p-4"
       onClick={handleClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-modal-title"
     >
-      <div 
+      <div
         className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 rounded-2xl shadow-2xl w-full max-w-2xl text-white animate-scale-in relative max-h-[90vh] flex flex-col"
         onClick={e => e.stopPropagation()}
       >
         <button type="button" onClick={handleClose} className="absolute top-4 right-4 p-2 rounded-full text-zinc-400 hover:bg-white/10 transition-colors z-10" aria-label={t('contactModal.close')}>
           <CloseIcon />
         </button>
-        
+
         <div className="overflow-y-auto">
           {isSubmitted ? (
             <div className="p-8 md:p-12 text-center">

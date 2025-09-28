@@ -32,15 +32,6 @@ const content = {
                     { value: "<24 Months", label: "Investment Payback" }
                 ]
             },
-            roadmap: {
-                title: 'Business Plan & Roadmap',
-                content: "Our strategic roadmap is designed for rapid development, market penetration, and scalable growth, culminating in a Series A financing round with a target valuation of €100 million.",
-                phases: [
-                    { phase: "Phase 1 (0-6M)", title: "MVP Completion", text: "Complete MVP development and validation with 5-10 seed users." },
-                    { phase: "Phase 2 (6-12M)", title: "European Launch", text: "Launch in UK/EU markets, targeting 50 paying enterprise clients." },
-                    { phase: "Phase 3 (12-18M)", title: "Global Expansion", text: "Enter North American and Asia-Pacific markets and initiate Series A financing." }
-                ]
-            },
             whyInvest: {
                 title: 'Why Invest in AGENTS AI',
                 content: "Investing in AGENTS AI means backing a top-tier team with a clear vision, a robust and scalable technology stack, and a multi-faceted strategy for market leadership and high returns.",
@@ -55,7 +46,6 @@ const content = {
         NAV_LINKS: [
             { href: '#about', text: 'About' },
             { href: '#summary', text: 'Summary' },
-            { href: '#roadmap', text: 'Roadmap' },
             { href: '#why-invest', text: 'Why Invest' },
             { href: '#portfolio', text: 'Portfolio' },
             { href: '#blog', text: 'Insights' },
@@ -122,15 +112,6 @@ const content = {
                     { value: "<24 Meses", label: "Retorno de la Inversión" }
                 ]
             },
-            roadmap: {
-                title: 'Plan de Negocio y Hoja de Ruta',
-                content: "Nuestra hoja de ruta estratégica está diseñada para un rápido desarrollo, penetración en el mercado y crecimiento escalable, culminando en una ronda de financiación Serie A con una valoración objetivo de 100 millones de euros.",
-                phases: [
-                    { phase: "Fase 1 (0-6M)", title: "Finalización del MVP", text: "Completar el desarrollo y la validación del MVP con 5-10 usuarios semilla." },
-                    { phase: "Fase 2 (6-12M)", title: "Lanzamiento en Europa", text: "Lanzamiento en los mercados del Reino Unido/UE, con el objetivo de 50 clientes empresariales de pago." },
-                    { phase: "Fase 3 (12-18M)", title: "Expansión Global", text: "Entrar en los mercados de América del Norte y Asia-Pacífico e iniciar la financiación de Serie A." }
-                ]
-            },
             whyInvest: {
                 title: 'Por Qué Invertir en AGENTS AI',
                 content: "Invertir en AGENTS AI significa respaldar a un equipo de primer nivel con una visión clara, una pila tecnológica robusta y escalable, y una estrategia multifacética para el liderazgo en el mercado y altos rendimientos.",
@@ -145,7 +126,6 @@ const content = {
         NAV_LINKS: [
             { href: '#about', text: 'Nosotros' },
             { href: '#summary', text: 'Resumen' },
-            { href: '#roadmap', text: 'Hoja de Ruta' },
             { href: '#why-invest', text: 'Por Qué Invertir' },
             { href: '#portfolio', text: 'Portafolio' },
             { href: '#blog', text: 'Perspectivas' },
@@ -212,15 +192,6 @@ const content = {
                     { value: "<24个月", label: "投资回收期" }
                 ]
             },
-            roadmap: {
-                title: '商业计划与路线图',
-                content: "我们的战略路线图旨在实现快速开发、市场渗透和可扩展增长，最终目标是以1亿欧元的目标估值完成A轮融资。",
-                phases: [
-                    { phase: "第一阶段 (0-6个月)", title: "完成MVP", text: "完成MVP开发并与5-10名种子用户进行验证。" },
-                    { phase: "第二阶段 (6-12个月)", title: "欧洲市场启动", text: "在英国/欧盟市场推出，目标是50家付费企业客户。" },
-                    { phase: "第三阶段 (12-18个月)", title: "全球扩张", text: "进入北美和亚太市场，并启动A轮融资。" }
-                ]
-            },
             whyInvest: {
                 title: '为何投资 AGENTS AI',
                 content: "投资AGENTS AI意味着支持一个拥有清晰愿景、强大可扩展技术栈以及多元化市场领先战略的顶尖团队，以获取高额回报。",
@@ -235,7 +206,6 @@ const content = {
         NAV_LINKS: [
             { href: '#about', text: '关于' },
             { href: '#summary', text: '摘要' },
-            { href: '#roadmap', text: '路线图' },
             { href: '#why-invest', text: '为何投资' },
             { href: '#portfolio', text: '项目组合' },
             { href: '#blog', text: '洞察' },
@@ -283,7 +253,6 @@ interface PageContent {
     PAGE_SECTIONS: {
         about: { title: string; content: string; stats: { value: string; label: string }[] };
         summary: { title: string; content: string; metrics: { value: string; label: string }[] };
-        roadmap: { title: string; content: string; phases: { phase: string; title: string; text: string }[] };
         whyInvest: { title: string; content: string; reasons: { icon: string; title: string; text: string }[] };
     };
     NAV_LINKS: { href: string; text: string }[];
@@ -306,22 +275,19 @@ interface PageContent {
 export const getPageContent = (lang: Language): PageContent => {
     const data = content[lang] || content['en'];
     
-    const serializeSection = (title: string, content: any): string => {
+    const serializeSection = (title: string, content: { content?: string; stats?: Array<{label: string; value: string}>; metrics?: Array<{label: string; value: string}>; phases?: Array<{phase: string; title: string; text: string}>; reasons?: Array<{title: string; text: string}> }): string => {
         let context = `## ${title}\n`;
         if (typeof content.content === 'string') {
             context += `${content.content}\n`;
         }
         if (content.stats) {
-            context += content.stats.map((s: any) => `- ${s.label}: ${s.value}`).join('\n') + '\n';
+            context += content.stats.map((s) => `- ${s.label}: ${s.value}`).join('\n') + '\n';
         }
         if (content.metrics) {
-            context += content.metrics.map((m: any) => `- ${m.label}: ${m.value}`).join('\n') + '\n';
-        }
-        if (content.phases) {
-            context += content.phases.map((p: any) => `### ${p.phase}: ${p.title}\n${p.text}`).join('\n') + '\n';
+            context += content.metrics.map((m) => `- ${m.label}: ${m.value}`).join('\n') + '\n';
         }
         if (content.reasons) {
-            context += content.reasons.map((r: any) => `### ${r.title}\n${r.text}`).join('\n') + '\n';
+            context += content.reasons.map((r) => `### ${r.title}\n${r.text}`).join('\n') + '\n';
         }
         return context;
     };

@@ -23,7 +23,7 @@ export const translations = {
     'mainPage.footer.legal': 'Registered in England and Wales as AGENTS AI Limited (Reg. No: 16570822). Associated entity: PIME AI LTD.',
     'mainPage.footer.confidentialityTitle': 'Confidentiality Notice:',
     'mainPage.footer.confidentialityText': 'This document contains confidential information of AGENTS AI Limited and is intended only for the designated recipients. Any reproduction, distribution, or disclosure of any part of this document without prior written consent from the company is strictly prohibited.',
-    
+
     'presentationsPage.title': 'Project Portfolio - AGENTS AI Limited',
     'presentationsPage.header.main': 'AGENTS AI Limited',
     'presentationsPage.header.sub': 'Project Portfolio',
@@ -47,7 +47,7 @@ export const translations = {
     'presentationsPage.notes.error.generic': '<p>An error occurred while generating notes. Please check your API key or try again later.</p>',
     'presentationsPage.notes.error.noApiKey': '<p>API key is not configured. AI features are unavailable.</p>',
     'presentationsPage.notes.error.noContent': '<p>Could not analyze the content of this slide.</p>',
-    
+
     'contactModal.title': 'Contact Us',
     'contactModal.close': 'Close contact form',
     'contactModal.success.title': 'Thank you for your inquiry!',
@@ -86,7 +86,7 @@ export const translations = {
     'contextPane.error.generic': 'Could not generate contextual information. Please try again.',
     'contextPane.error.noApiKey': 'API key not configured. AI features are unavailable.',
     'contextPane.error.fromApi': 'Failed to generate contextual information from the AI service.',
-    
+
     'interactiveSection.complexContent': 'Complex content placeholder',
 
     'spinner.loading': 'Loading...',
@@ -172,7 +172,7 @@ Based on your analysis, provide the following in JSON format:
     'contactModal.form.interest.general': 'Consulta General',
     'contactModal.form.message': 'Mensaje',
     'contactModal.form.submit': 'Enviar Mensaje',
-    
+
     'chatbot.title': 'Analista de Inversiones de IA',
     'chatbot.open': 'Abrir chat del Analista de Inversiones de IA',
     'chatbot.close': 'Cerrar chat',
@@ -358,7 +358,7 @@ const getInitialLanguage = (): Language => {
     } catch (e) {
         console.warn('Could not access localStorage for language setting.');
     }
-    
+
     if (typeof navigator !== 'undefined') {
         const preferredLangs = navigator.languages || [navigator.language];
         for (const lang of preferredLangs) {
@@ -397,7 +397,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     }
     return translation;
   }, [language]);
-  
+
   const contextValue = useMemo(() => ({
     language,
     setLanguage,
