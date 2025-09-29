@@ -6,7 +6,6 @@ import Navigation from './components/Navigation';
 import GridView from './components/GridView';
 import NotesPanel from './components/NotesPanel';
 import { getPageContent } from './pageContent';
-import Spinner from './components/Spinner';
 import ContactModal from './components/ContactModal';
 import { LanguageProvider, useTranslation } from './hooks/useTranslation';
 import LanguageSwitcher from './components/LanguageSwitcher';
@@ -22,7 +21,7 @@ declare global {
 const PageHeader: React.FC = () => {
     const { t } = useTranslation();
     return (
-        <header className="bg-white/5 backdrop-blur-md border-b border-white/10 sticky top-0 z-40">
+        <header className="bg-slate-950/85 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/40 sticky top-0 z-40">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <a href="./index.html" className="flex items-center gap-3 group">
@@ -56,23 +55,17 @@ const PresentationsApp: React.FC = () => {
   const [activeDeckIndex, setActiveDeckIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [isGridOpen, setIsGridOpen] = useState(false);
   const [isNotesOpen, setIsNotesOpen] = useState(false);
   const [speakerNotesCache, setSpeakerNotesCache] = useState<Record<string, string>>({});
   const [isGeneratingNotes, setIsGeneratingNotes] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-  const [slideState, setSlideState] = useState({
-      key: 'A',
-      slideA: { content: '', loaded: false },
-      slideB: { content: '', loaded: false },
-  });
-
   const playerRef = useRef<HTMLDivElement>(null);
 
   const activeDeck = PRESENTATIONS[activeDeckIndex];
   const slides = activeDeck.slides;
+  const activeSlide = slides[currentSlideIndex] ?? '';
 
 
   useEffect(() => {
@@ -81,26 +74,20 @@ const PresentationsApp: React.FC = () => {
   }, [language, t]);
 
   const handleDeckSelect = useCallback((index: number, slideIndex = 0) => {
-    if (index === activeDeckIndex && slideIndex === currentSlideIndex && slideState.slideA.content) return;
+    if (index === activeDeckIndex && slideIndex === currentSlideIndex) return;
 
     const newDeckSlides = PRESENTATIONS[index].slides;
     const validSlideIndex = Math.max(0, Math.min(slideIndex, newDeckSlides.length - 1));
 
     setActiveDeckIndex(index);
     setCurrentSlideIndex(validSlideIndex);
-    setIsLoading(true);
-    setSlideState({
-      key: 'A',
-      slideA: { content: newDeckSlides[validSlideIndex], loaded: false },
-      slideB: { content: '', loaded: false },
-    });
     setSpeakerNotesCache({}); // Clear notes for new deck
 
     const url = new URL(window.location.href);
     url.searchParams.set('deck', index.toString());
     url.searchParams.set('slide', validSlideIndex.toString());
     window.history.pushState({}, '', url);
-  }, [activeDeckIndex, currentSlideIndex, slideState.slideA.content, PRESENTATIONS]);
+  }, [PRESENTATIONS, activeDeckIndex, currentSlideIndex]);
 
   useEffect(() => {
       const params = new URLSearchParams(window.location.search);
@@ -145,36 +132,20 @@ const PresentationsApp: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (isLoading) {
-      const activeKey = slideState.key;
-      if (slideState[activeKey === 'A' ? 'slideA' : 'slideB'].loaded) {
-        setIsLoading(false);
-      }
-    }
-  }, [slideState, isLoading]);
-
   const updateSlide = useCallback((newIndex: number) => {
     if (newIndex === currentSlideIndex || newIndex < 0 || newIndex >= slides.length) return;
 
-    const newContent = slides[newIndex];
-    if (slideState.key === 'A') {
-      setSlideState(s => ({...s, key: 'B', slideB: { content: newContent, loaded: false }}));
-    } else {
-      setSlideState(s => ({...s, key: 'A', slideA: { content: newContent, loaded: false }}));
-    }
     setCurrentSlideIndex(newIndex);
 
     const url = new URL(window.location.href);
     url.searchParams.set('slide', newIndex.toString());
     window.history.pushState({}, '', url);
 
-  }, [slides, currentSlideIndex, slideState.key]);
+  }, [currentSlideIndex, slides.length]);
 
   const handleNext = useCallback(() => updateSlide(currentSlideIndex + 1), [currentSlideIndex, updateSlide]);
   const handlePrev = useCallback(() => updateSlide(currentSlideIndex - 1), [currentSlideIndex, updateSlide]);
   const handleSlideSelect = useCallback((index: number) => { updateSlide(index); setIsGridOpen(false); }, [updateSlide]);
-  const handleSlideLoaded = (key: 'slideA' | 'slideB') => setSlideState(s => ({ ...s, [key]: { ...s[key], loaded: true } }));
 
   const handleGenerateNotes = useCallback(async () => {
     // AI notes generation disabled. Provide a static placeholder.
@@ -231,17 +202,17 @@ const PresentationsApp: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col bg-zinc-950">
+      <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
           <PageHeader />
           <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
               <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold text-white mb-2">Corporate Presentations</h2>
-                  <p className="text-zinc-400 max-w-2xl mx-auto">Explore our comprehensive portfolio of AI solutions and business presentations</p>
+                  <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">Corporate Presentations</h2>
+                  <p className="text-slate-300/90 max-w-2xl mx-auto">Explore our comprehensive portfolio of AI solutions and business presentations</p>
               </div>
               
               <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
                   <div className="xl:col-span-1">
-                      <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                      <div className="bg-slate-900/70 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl shadow-black/40">
                           <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                               <i data-lucide="folder-open" className="w-5 h-5 text-emerald-400"></i>
                               Portfolio Decks
@@ -253,21 +224,21 @@ const PresentationsApp: React.FC = () => {
                                       <button
                                           key={deck.name}
                                           onClick={() => handleDeckSelect(index)}
-                                          className={`w-full text-left p-4 rounded-lg transition-all duration-200 border ${
-                                              isActive 
-                                                  ? 'bg-emerald-500/10 border-emerald-500/30 text-white shadow-lg shadow-emerald-900/20' 
-                                                  : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 text-zinc-300'
+                                          className={`w-full text-left p-4 rounded-xl transition-all duration-200 border ${
+                                              isActive
+                                                  ? 'bg-emerald-500/15 border-emerald-400/40 text-white shadow-lg shadow-emerald-900/30 ring-1 ring-emerald-400/20'
+                                                  : 'bg-slate-950/60 border-white/10 hover:bg-slate-900/70 hover:border-emerald-400/30 text-slate-300/90'
                                           }`}>
                                           <div className="flex items-start gap-3">
-                                              <div className={`mt-0.5 flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                                                  isActive ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10 text-zinc-400'
+                                              <div className={`mt-0.5 flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-colors border ${
+                                                  isActive ? 'bg-emerald-500/20 border-emerald-400/40 text-emerald-200' : 'bg-slate-900/70 border-white/10 text-slate-400'
                                               }`}>
                                                   <i data-lucide={deck.icon} className="w-4 h-4"></i>
                                               </div>
                                               <div className="flex-1 min-w-0">
-                                                  <h4 className="font-semibold text-sm mb-0.5">{deck.name}</h4>
-                                                  <p className="text-xs text-zinc-400 mb-1">{deck.subtitle}</p>
-                                                  <p className="text-xs text-zinc-500">{deck.value}</p>
+                                                  <h4 className="font-semibold text-sm mb-0.5 text-white">{deck.name}</h4>
+                                                  <p className="text-xs text-slate-300/90 mb-1">{deck.subtitle}</p>
+                                                  <p className="text-xs text-slate-400/80">{deck.value}</p>
                                               </div>
                                           </div>
                                       </button>
@@ -278,12 +249,12 @@ const PresentationsApp: React.FC = () => {
                   </div>
 
                   <div className="xl:col-span-2">
-                      <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden">
+                      <div className="bg-slate-900/75 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
                           <div className="p-4 border-b border-white/10">
                               <div className="flex items-center justify-between">
                                   <div>
                                       <h3 className="text-lg font-semibold text-white">{activeDeck.title}</h3>
-                                      <p className="text-sm text-zinc-400">
+                                      <p className="text-sm text-slate-300/80">
                                           Slide {currentSlideIndex + 1} of {slides.length}
                                       </p>
                                   </div>
@@ -300,13 +271,7 @@ const PresentationsApp: React.FC = () => {
                           
                           <div ref={playerRef} className={`bg-black ${isFullScreen ? 'fixed inset-0 z-50' : ''}`} aria-live="polite" aria-atomic="true">
                               <div className="relative aspect-video bg-black">
-                                  {isLoading && (
-                                      <div className="absolute inset-0 flex items-center justify-center bg-black z-30">
-                                          <Spinner size="md" />
-                                      </div>
-                                  )}
-                                  <SlideViewer htmlContent={slideState.slideA.content} isVisible={slideState.key === 'A' && !isLoading} onLoaded={() => handleSlideLoaded('slideA')} />
-                                  <SlideViewer htmlContent={slideState.slideB.content} isVisible={slideState.key === 'B' && !isLoading} onLoaded={() => handleSlideLoaded('slideB')} />
+                                  <SlideViewer htmlContent={activeSlide} />
                               </div>
                           </div>
                           
