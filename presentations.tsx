@@ -6,7 +6,6 @@ import Navigation from './components/Navigation';
 import GridView from './components/GridView';
 import NotesPanel from './components/NotesPanel';
 import { getPageContent } from './pageContent';
-import Spinner from './components/Spinner';
 import ContactModal from './components/ContactModal';
 import { LanguageProvider, useTranslation } from './hooks/useTranslation';
 import LanguageSwitcher from './components/LanguageSwitcher';
@@ -56,17 +55,20 @@ const PresentationsApp: React.FC = () => {
   const [activeDeckIndex, setActiveDeckIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [isGridOpen, setIsGridOpen] = useState(false);
   const [isNotesOpen, setIsNotesOpen] = useState(false);
   const [speakerNotesCache, setSpeakerNotesCache] = useState<Record<string, string>>({});
   const [isGeneratingNotes, setIsGeneratingNotes] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-  const [slideState, setSlideState] = useState({
+  const [slideState, setSlideState] = useState<{
+      key: 'A' | 'B';
+      slideA: { content: string };
+      slideB: { content: string };
+  }>({
       key: 'A',
-      slideA: { content: '', loaded: false },
-      slideB: { content: '', loaded: false },
+      slideA: { content: '' },
+      slideB: { content: '' },
   });
 
   const playerRef = useRef<HTMLDivElement>(null);
@@ -88,11 +90,10 @@ const PresentationsApp: React.FC = () => {
 
     setActiveDeckIndex(index);
     setCurrentSlideIndex(validSlideIndex);
-    setIsLoading(true);
     setSlideState({
       key: 'A',
-      slideA: { content: newDeckSlides[validSlideIndex], loaded: false },
-      slideB: { content: '', loaded: false },
+      slideA: { content: newDeckSlides[validSlideIndex] },
+      slideB: { content: '' },
     });
     setSpeakerNotesCache({}); // Clear notes for new deck
 
@@ -145,23 +146,14 @@ const PresentationsApp: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (isLoading) {
-      const activeKey = slideState.key;
-      if (slideState[activeKey === 'A' ? 'slideA' : 'slideB'].loaded) {
-        setIsLoading(false);
-      }
-    }
-  }, [slideState, isLoading]);
-
   const updateSlide = useCallback((newIndex: number) => {
     if (newIndex === currentSlideIndex || newIndex < 0 || newIndex >= slides.length) return;
 
     const newContent = slides[newIndex];
     if (slideState.key === 'A') {
-      setSlideState(s => ({...s, key: 'B', slideB: { content: newContent, loaded: false }}));
+      setSlideState(s => ({...s, key: 'B', slideB: { content: newContent }}));
     } else {
-      setSlideState(s => ({...s, key: 'A', slideA: { content: newContent, loaded: false }}));
+      setSlideState(s => ({...s, key: 'A', slideA: { content: newContent }}));
     }
     setCurrentSlideIndex(newIndex);
 
@@ -174,7 +166,6 @@ const PresentationsApp: React.FC = () => {
   const handleNext = useCallback(() => updateSlide(currentSlideIndex + 1), [currentSlideIndex, updateSlide]);
   const handlePrev = useCallback(() => updateSlide(currentSlideIndex - 1), [currentSlideIndex, updateSlide]);
   const handleSlideSelect = useCallback((index: number) => { updateSlide(index); setIsGridOpen(false); }, [updateSlide]);
-  const handleSlideLoaded = (key: 'slideA' | 'slideB') => setSlideState(s => ({ ...s, [key]: { ...s[key], loaded: true } }));
 
   const handleGenerateNotes = useCallback(async () => {
     // AI notes generation disabled. Provide a static placeholder.
@@ -300,13 +291,8 @@ const PresentationsApp: React.FC = () => {
                           
                           <div ref={playerRef} className={`bg-black ${isFullScreen ? 'fixed inset-0 z-50' : ''}`} aria-live="polite" aria-atomic="true">
                               <div className="relative aspect-video bg-black">
-                                  {isLoading && (
-                                      <div className="absolute inset-0 flex items-center justify-center bg-black z-30">
-                                          <Spinner size="md" />
-                                      </div>
-                                  )}
-                                  <SlideViewer htmlContent={slideState.slideA.content} isVisible={slideState.key === 'A' && !isLoading} onLoaded={() => handleSlideLoaded('slideA')} />
-                                  <SlideViewer htmlContent={slideState.slideB.content} isVisible={slideState.key === 'B' && !isLoading} onLoaded={() => handleSlideLoaded('slideB')} />
+                                  <SlideViewer htmlContent={slideState.slideA.content} isVisible={slideState.key === 'A'} />
+                                  <SlideViewer htmlContent={slideState.slideB.content} isVisible={slideState.key === 'B'} />
                               </div>
                           </div>
                           

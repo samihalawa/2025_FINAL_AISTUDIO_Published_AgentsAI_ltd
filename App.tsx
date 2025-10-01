@@ -18,6 +18,14 @@ const App: React.FC = () => {
   const { PROJECT_DETAILS, PAGE_SECTIONS, NAV_LINKS, BLOG_SECTION } = getPageContent(language);
   const { about, summary, whyInvest } = PAGE_SECTIONS;
 
+  const sectionCardClasses = "relative rounded-3xl border border-zinc-800/60 bg-zinc-950/80 shadow-[0_45px_120px_-60px_rgba(16,185,129,0.35)] px-6 sm:px-10 md:px-16 py-12 md:py-16 backdrop-blur";
+  const sectionTitleClasses = "text-4xl md:text-5xl font-bold text-center mb-8 text-white tracking-tight";
+  const sectionIntroClasses = "text-zinc-300 text-lg leading-relaxed text-center max-w-3xl mx-auto mb-12";
+  const statCardClasses = "text-center p-6 rounded-2xl bg-gradient-to-br from-zinc-900/85 to-black/60 border border-zinc-800/70 shadow-lg shadow-black/30";
+  const metricCardClasses = "p-8 rounded-2xl text-center cursor-pointer transition-all duration-300 bg-gradient-to-br from-zinc-950/85 via-zinc-900/80 to-black/70 border border-zinc-800/70 shadow-xl hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_35px_90px_-60px_rgba(16,185,129,0.6)]";
+  const detailCardClasses = "group p-8 rounded-2xl cursor-pointer transition-all duration-300 bg-gradient-to-br from-zinc-950/85 via-zinc-900/80 to-black/70 border border-zinc-800/70 shadow-xl hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_35px_90px_-60px_rgba(16,185,129,0.6)]";
+  const infoPillClasses = "flex items-center gap-3 px-4 py-2 rounded-full border border-zinc-800/60 bg-zinc-950/80 text-sm text-zinc-200 shadow-[0_20px_60px_-40px_rgba(16,185,129,0.65)]";
+
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [activeContent, setActiveContent] = useState<string | null>(null);
 
@@ -72,15 +80,32 @@ const App: React.FC = () => {
     <>
       <StickyNav links={NAV_LINKS} />
       <header className="relative overflow-hidden py-32 md:py-48">
-        <div className="container mx-auto px-6 text-center">
-            <div className="relative z-10 max-w-4xl mx-auto">
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-zinc-50 to-zinc-400">{t('mainPage.header.title')}</h1>
-                <p className="text-xl md:text-3xl text-zinc-400 mb-10">{t('mainPage.header.subtitle')}</p>
-                <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-lg text-zinc-400">
-                    <span className="flex items-center gap-2"><i data-lucide="map-pin" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.location')}</span>
-                    <span className="flex items-center gap-2"><i data-lucide="shield-check" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.regNo')}: 16570822</span>
-                    <span className="flex items-center gap-2"><i data-lucide="phone" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.tel')}: +44 7883306011</span>
-                    <span className="flex items-center gap-2"><i data-lucide="mail" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.email')}: info@agentsai.ltd</span>
+        <div className="container mx-auto px-6">
+            <div className="relative z-10 max-w-5xl mx-auto">
+                <div className="relative overflow-hidden rounded-3xl border border-zinc-800/60 bg-gradient-to-br from-zinc-950/85 via-zinc-900/80 to-black/70 px-8 md:px-16 py-16 text-center shadow-[0_55px_130px_-70px_rgba(16,185,129,0.55)] backdrop-blur">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 via-transparent to-cyan-500/10" aria-hidden="true"></div>
+                    <div className="relative z-10">
+                        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-white">{t('mainPage.header.title')}</h1>
+                        <p className="text-xl md:text-3xl text-zinc-300 mb-12 max-w-3xl mx-auto">{t('mainPage.header.subtitle')}</p>
+                        <div className="flex flex-wrap justify-center gap-4 text-base">
+                            <div className={infoPillClasses}>
+                                <i data-lucide="map-pin" className="w-5 h-5 text-emerald-400"></i>
+                                <span className="font-medium">{t('mainPage.header.location')}</span>
+                            </div>
+                            <div className={infoPillClasses}>
+                                <i data-lucide="shield-check" className="w-5 h-5 text-emerald-400"></i>
+                                <span className="font-medium">{t('mainPage.header.regNo')}: 16570822</span>
+                            </div>
+                            <div className={infoPillClasses}>
+                                <i data-lucide="phone" className="w-5 h-5 text-emerald-400"></i>
+                                <span className="font-medium">{t('mainPage.header.tel')}: +44 7883306011</span>
+                            </div>
+                            <div className={infoPillClasses}>
+                                <i data-lucide="mail" className="w-5 h-5 text-emerald-400"></i>
+                                <span className="font-medium">{t('mainPage.header.email')}: info@agentsai.ltd</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,159 +113,181 @@ const App: React.FC = () => {
 
       <main className="max-w-5xl mx-auto px-6 md:px-12 py-16 space-y-28">
           <section id="about" className="scroll-mt-24">
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 to-zinc-400">{about.title}</h2>
-              <p className="text-zinc-400 text-lg leading-relaxed text-center max-w-3xl mx-auto mb-12">{about.content}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                  {about.stats.map(stat => (
-                        <div key={stat.label} className="text-center p-4 rounded-xl bg-zinc-900/50 border border-zinc-800">
-                          <span className="text-4xl font-bold text-emerald-400 block">{stat.value}</span>
-                          <span className="text-zinc-500">{stat.label}</span>
-                      </div>
-                  ))}
+              <div className={sectionCardClasses}>
+                  <h2 className={sectionTitleClasses}>{about.title}</h2>
+                  <p className={sectionIntroClasses}>{about.content}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                      {about.stats.map(stat => (
+                            <div key={stat.label} className={statCardClasses}>
+                              <span className="text-4xl font-bold text-emerald-400 block tracking-tight">{stat.value}</span>
+                              <span className="text-zinc-400 font-medium">{stat.label}</span>
+                          </div>
+                      ))}
+                  </div>
               </div>
           </section>
 
           <section id="summary" className="scroll-mt-24">
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 to-zinc-400">{summary.title}</h2>
-              <p className="text-zinc-400 text-lg leading-relaxed text-center max-w-3xl mx-auto mb-12">{summary.content}</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                  {summary.metrics.map(metric => {
-                      const metricContent = `${metric.label}: ${metric.value}`;
-                      const isActive = activeContent === metricContent;
-                      return (
-                        <div key={metric.label} onClick={() => handleContentClick(metricContent)} className={`p-6 rounded-2xl text-center cursor-pointer transition-all duration-300 ${isActive ? 'bg-zinc-800/90 ring-2 ring-emerald-500/60 shadow-lg' : 'bg-zinc-900/50 border border-zinc-800 hover:bg-zinc-800 hover:-translate-y-1'}`}>
-                            <span className="text-4xl font-bold text-emerald-400 block tracking-tighter">{metric.value}</span>
-                            <span className="text-zinc-400">{metric.label}</span>
-                        </div>
-                      )
-                  })}
+              <div className={sectionCardClasses}>
+                  <h2 className={sectionTitleClasses}>{summary.title}</h2>
+                  <p className={sectionIntroClasses}>{summary.content}</p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                      {summary.metrics.map(metric => {
+                          const metricContent = `${metric.label}: ${metric.value}`;
+                          const isActive = activeContent === metricContent;
+                          return (
+                            <div
+                              key={metric.label}
+                              onClick={() => handleContentClick(metricContent)}
+                              className={`${metricCardClasses} ${isActive ? 'ring-2 ring-emerald-500/60 shadow-[0_45px_120px_-60px_rgba(16,185,129,0.7)]' : ''}`}
+                            >
+                                <span className="text-4xl font-bold text-emerald-400 block tracking-tight">{metric.value}</span>
+                                <span className="text-zinc-300 font-medium">{metric.label}</span>
+                            </div>
+                          )
+                      })}
+                  </div>
               </div>
           </section>
 
           <section id="why-invest" className="scroll-mt-24">
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 to-zinc-400">{whyInvest.title}</h2>
-              <p className="text-zinc-400 text-lg leading-relaxed text-center max-w-3xl mx-auto mb-16">{whyInvest.content}</p>
-              <div className="grid md:grid-cols-2 gap-6">
-                  {whyInvest.reasons.map(reason => {
-                      const reasonContent = `${reason.title}. ${reason.text}`;
-                      const isActive = activeContent === reasonContent;
-                      return (
-                          <div key={reason.title} onClick={() => handleContentClick(reasonContent)} className={`group p-6 rounded-2xl cursor-pointer transition-all duration-300 border ${isActive ? 'bg-zinc-800 ring-2 ring-emerald-500/60 shadow-lg border-transparent' : 'bg-zinc-900/50 border-zinc-800 hover:bg-zinc-800 hover:border-emerald-500/30 hover:-translate-y-1'}`}>
-                              <div className="flex items-start gap-4">
-                                  <div className="flex-shrink-0 w-12 h-12 bg-zinc-800 rounded-lg flex items-center justify-center text-emerald-400">
-                                      <i data-lucide={reason.icon} className="w-6 h-6"></i>
-                                  </div>
-                                  <div>
-                                      <h3 className="text-lg font-bold mb-1 text-white">{reason.title}</h3>
-                                      <p className="text-zinc-400 text-sm">{reason.text}</p>
+              <div className={sectionCardClasses}>
+                  <h2 className={sectionTitleClasses}>{whyInvest.title}</h2>
+                  <p className={`${sectionIntroClasses} mb-14`}>{whyInvest.content}</p>
+                  <div className="grid md:grid-cols-2 gap-6">
+                      {whyInvest.reasons.map(reason => {
+                          const reasonContent = `${reason.title}. ${reason.text}`;
+                          const isActive = activeContent === reasonContent;
+                          return (
+                              <div
+                                key={reason.title}
+                                onClick={() => handleContentClick(reasonContent)}
+                                className={`${detailCardClasses} ${isActive ? 'ring-2 ring-emerald-500/60 shadow-[0_45px_120px_-60px_rgba(16,185,129,0.7)]' : ''}`}
+                              >
+                                  <div className="flex items-start gap-4">
+                                      <div className={`flex-shrink-0 w-12 h-12 rounded-xl border flex items-center justify-center text-emerald-400 ${isActive ? 'bg-emerald-500/15 border-emerald-500/40' : 'bg-emerald-500/10 border-emerald-500/20'}`}>
+                                          <i data-lucide={reason.icon} className="w-6 h-6"></i>
+                                      </div>
+                                      <div>
+                                          <h3 className="text-lg font-bold mb-1 text-white">{reason.title}</h3>
+                                          <p className="text-zinc-300 text-sm leading-relaxed">{reason.text}</p>
+                                      </div>
                                   </div>
                               </div>
-                          </div>
-                      )
-                  })}
+                          )
+                      })}
+                  </div>
               </div>
           </section>
 
         <section id="portfolio" className="my-28 scroll-mt-24">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 to-zinc-400">{t('mainPage.portfolio.title')}</h2>
-            <p className="text-zinc-400 text-lg max-w-3xl mx-auto mb-16 text-center">{t('mainPage.portfolio.description')}</p>
-            <div className="grid md:grid-cols-2 gap-8">
-                {PROJECT_DETAILS.map((deck, index) => (
-                    <a key={deck.name}
-                        href={`presentations.html?deck=${index}`}
-                        aria-label={`${t('mainPage.portfolio.viewAria')} ${deck.name}`}
-                        className="group block p-8 rounded-2xl cursor-pointer transition-all duration-300 bg-zinc-900/50 border border-zinc-800 hover:bg-zinc-800 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-950 focus:ring-emerald-400">
-                        <div className="flex items-start gap-5">
-                            <div className="flex-shrink-0 w-16 h-16 bg-zinc-800 rounded-lg flex items-center justify-center transition-colors text-emerald-400">
-                                <i data-lucide={deck.icon} className="w-8 h-8"></i>
+            <div className={sectionCardClasses}>
+                <h2 className={sectionTitleClasses}>{t('mainPage.portfolio.title')}</h2>
+                <p className={sectionIntroClasses}>{t('mainPage.portfolio.description')}</p>
+                <div className="grid md:grid-cols-2 gap-8">
+                    {PROJECT_DETAILS.map((deck, index) => (
+                        <a
+                            key={deck.name}
+                            href={`presentations.html?deck=${index}`}
+                            aria-label={`${t('mainPage.portfolio.viewAria')} ${deck.name}`}
+                            className="group block p-8 rounded-2xl bg-gradient-to-br from-zinc-950/85 via-zinc-900/80 to-black/70 border border-zinc-800/70 shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-2 hover:border-emerald-500/40 hover:shadow-[0_45px_120px_-60px_rgba(16,185,129,0.6)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-950 focus:ring-emerald-400"
+                        >
+                            <div className="flex items-start gap-5">
+                                <div className="flex-shrink-0 w-16 h-16 rounded-xl border border-emerald-500/20 bg-emerald-500/10 flex items-center justify-center text-emerald-300 transition-colors group-hover:text-emerald-200">
+                                    <i data-lucide={deck.icon} className="w-8 h-8"></i>
+                                </div>
+                                <div className="flex-grow text-left">
+                                    <h3 className="text-2xl font-bold mb-2 text-white">{deck.name}</h3>
+                                    <p className="font-semibold text-zinc-300 mb-3">{deck.subtitle}</p>
+                                    <p className="text-zinc-400 text-sm mb-4 leading-relaxed">{deck.value}</p>
+                                    <span className="inline-flex items-center gap-2 font-semibold text-emerald-400 group-hover:text-emerald-300 transition-colors">
+                                        {t('mainPage.portfolio.viewButton')} <i data-lucide="arrow-right" className="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                                    </span>
+                                </div>
                             </div>
-                            <div className="flex-grow">
-                                <h3 className="text-2xl font-bold mb-2 text-white">{deck.name}</h3>
-                                <p className="font-semibold text-zinc-400 mb-3">{deck.subtitle}</p>
-                                <p className="text-zinc-500 text-sm mb-4">{deck.value}</p>
-                                <span className="font-semibold text-emerald-400/80 group-hover:text-emerald-400 transition-colors flex items-center gap-2">
-                                    {t('mainPage.portfolio.viewButton')} <i data-lucide="arrow-right" className="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                ))}
+                        </a>
+                    ))}
+                </div>
             </div>
         </section>
 
         <section id="blog" className="my-28 scroll-mt-24">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 to-zinc-400">{BLOG_SECTION.title}</h2>
-            <p className="text-zinc-400 text-lg max-w-3xl mx-auto mb-12 text-center">{BLOG_SECTION.intro}</p>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {BLOG_SECTION.posts.map(post => {
-                    const postContext = `${post.title}. ${post.excerpt} ${post.insight}`;
-                    const isActive = activeContent === postContext;
-                    return (
-                        <article
-                            key={post.title}
-                            role="button"
-                            tabIndex={0}
-                            onClick={() => handleContentClick(postContext)}
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter' || e.key === ' ') {
-                                    e.preventDefault();
-                                    handleContentClick(postContext);
-                                }
-                            }}
-                            className={`p-8 rounded-2xl transition-all duration-300 border ${isActive ? 'bg-zinc-800/90 border-emerald-500/60 shadow-lg shadow-emerald-900/20' : 'bg-zinc-900/50 border-zinc-800 hover:bg-zinc-800 hover:border-emerald-500/30 hover:-translate-y-1'}`}
-                            aria-label={`${BLOG_SECTION.title}: ${post.title}`}
-                        >
-                            <div className="flex items-center justify-between text-xs uppercase tracking-wider text-emerald-400/80 mb-4">
-                                <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 font-semibold">{post.category}</span>
-                                <span className="text-zinc-500 font-mono">{post.date}</span>
-                            </div>
-                            <h3 className="text-2xl font-bold text-white mb-3 leading-tight">{post.title}</h3>
-                            <p className="text-zinc-400 text-sm leading-relaxed mb-4">{post.excerpt}</p>
-                            <p className="text-emerald-400/90 text-sm font-semibold mb-6">{post.insight}</p>
-                            <button type="button"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleContentClick(postContext);
+            <div className={sectionCardClasses}>
+                <h2 className={sectionTitleClasses}>{BLOG_SECTION.title}</h2>
+                <p className={sectionIntroClasses}>{BLOG_SECTION.intro}</p>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {BLOG_SECTION.posts.map(post => {
+                        const postContext = `${post.title}. ${post.excerpt} ${post.insight}`;
+                        const isActive = activeContent === postContext;
+                        return (
+                            <article
+                                key={post.title}
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => handleContentClick(postContext)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        handleContentClick(postContext);
+                                    }
                                 }}
-                                className="inline-flex items-center text-emerald-400 hover:text-emerald-300 text-sm font-semibold transition-colors"
+                                className={`${detailCardClasses} ${isActive ? 'ring-2 ring-emerald-500/60 shadow-[0_45px_120px_-60px_rgba(16,185,129,0.7)]' : ''}`}
+                                aria-label={`${BLOG_SECTION.title}: ${post.title}`}
                             >
-                                {BLOG_SECTION.ctaLabel}
-                                <i data-lucide="arrow-up-right" className="w-4 h-4 ml-2"></i>
-                            </button>
-                        </article>
-                    );
-                })}
+                                <div className="flex items-center justify-between text-xs uppercase tracking-wider text-emerald-300 mb-4">
+                                    <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 font-semibold text-emerald-200">{post.category}</span>
+                                    <span className="text-zinc-500 font-mono">{post.date}</span>
+                                </div>
+                                <h3 className="text-2xl font-bold text-white mb-3 leading-tight">{post.title}</h3>
+                                <p className="text-zinc-300 text-sm leading-relaxed mb-4">{post.excerpt}</p>
+                                <p className="text-emerald-300 text-sm font-semibold mb-6">{post.insight}</p>
+                                <button type="button"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleContentClick(postContext);
+                                    }}
+                                    className="inline-flex items-center text-emerald-300 hover:text-emerald-200 text-sm font-semibold transition-colors"
+                                >
+                                    {BLOG_SECTION.ctaLabel}
+                                    <i data-lucide="arrow-up-right" className="w-4 h-4 ml-2"></i>
+                                </button>
+                            </article>
+                        );
+                    })}
+                </div>
             </div>
         </section>
 
-        <section id="cta" className="my-28 text-center scroll-mt-24">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 to-zinc-400">{t('mainPage.cta.title')}</h2>
-            <p className="text-zinc-400 text-lg max-w-3xl mx-auto mb-10">{t('mainPage.cta.description')}</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                 {/* Chat button removed */}
-                <button type="button"
-                    onClick={() => setIsContactModalOpen(true)}
-                    className="btn-primary text-lg px-8 py-3"
-                >
-                    <i data-lucide="calendar-plus" className="w-6 h-6 mr-3"></i>
-                    {t('mainPage.cta.meetingButton')}
-                </button>
+        <section id="cta" className="my-28 scroll-mt-24">
+            <div className={`${sectionCardClasses} text-center`}>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">{t('mainPage.cta.title')}</h2>
+                <p className="text-zinc-300 text-lg max-w-3xl mx-auto mb-10">{t('mainPage.cta.description')}</p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                    <button
+                        type="button"
+                        onClick={() => setIsContactModalOpen(true)}
+                        className="btn-primary text-lg px-10 py-3 shadow-[0_25px_70px_-35px_rgba(16,185,129,0.6)]"
+                    >
+                        <i data-lucide="calendar-plus" className="w-6 h-6 mr-3"></i>
+                        {t('mainPage.cta.meetingButton')}
+                    </button>
+                </div>
             </div>
         </section>
       </main>
 
-            <footer className="bg-transparent border-t border-zinc-800/50">
-        <div className="container mx-auto px-6 py-12 text-center text-zinc-500">
-            <div className="max-w-xl mx-auto">
+      <footer className="bg-zinc-950/95 border-t border-zinc-800/60">
+        <div className="container mx-auto px-6 py-16 text-center text-zinc-500">
+            <div className="max-w-xl mx-auto mb-12 p-8 rounded-3xl border border-zinc-800/70 bg-zinc-950/70 shadow-[0_35px_90px_-60px_rgba(16,185,129,0.35)]">
               <h3 className="text-2xl font-bold text-white mb-4">{t('mainPage.newsletter.title')}</h3>
-              <p className="text-zinc-400 mb-6">{t('mainPage.newsletter.description')}</p>
+              <p className="text-zinc-300 mb-6">{t('mainPage.newsletter.description')}</p>
               <Newsletter />
             </div>
-            <p className="mb-2 mt-12 pt-8 border-t border-zinc-800/50">{t('mainPage.footer.copyright')}</p>
-            <p className="mb-1">{t('mainPage.footer.address')}</p>
-            <p className="mb-1">{t('mainPage.footer.contact')}</p>
-            <p className="mb-4">{t('mainPage.footer.legal')}</p>
-            <p className="text-sm max-w-3xl mx-auto"><span className="font-bold">{t('mainPage.footer.confidentialityTitle')}</span> {t('mainPage.footer.confidentialityText')}</p>
+            <p className="mb-2 text-zinc-400">{t('mainPage.footer.copyright')}</p>
+            <p className="mb-1 text-zinc-500">{t('mainPage.footer.address')}</p>
+            <p className="mb-1 text-zinc-500">{t('mainPage.footer.contact')}</p>
+            <p className="mb-4 text-zinc-500">{t('mainPage.footer.legal')}</p>
+            <p className="text-sm max-w-3xl mx-auto text-zinc-500"><span className="font-bold text-zinc-300">{t('mainPage.footer.confidentialityTitle')}</span> {t('mainPage.footer.confidentialityText')}</p>
         </div>
       </footer>
       <ContactModal

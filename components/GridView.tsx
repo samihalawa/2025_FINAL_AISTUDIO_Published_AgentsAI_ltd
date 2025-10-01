@@ -1,5 +1,4 @@
 import React from 'react';
-import Spinner from './Spinner';
 import { useTranslation } from '../hooks/useTranslation';
 
 interface GridViewProps {
@@ -41,9 +40,6 @@ const GridView: React.FC<GridViewProps> = ({ isOpen, onClose, slides, onSelect, 
               className={`aspect-video rounded-lg cursor-pointer transition-all duration-200 relative overflow-hidden ring-2 ${currentIndex === index ? 'ring-blue-500 scale-105' : 'ring-transparent hover:ring-blue-500/70'}`}
               aria-label={`${t('presentationsPage.grid.goto')} ${index + 1}`}
             >
-              <div className="absolute inset-0 bg-black flex items-center justify-center text-white/50">
-                  <Spinner size="sm" />
-              </div>
               <iframe
                 srcDoc={slide}
                 title={`${t('presentationsPage.grid.goto')} ${index + 1}`}

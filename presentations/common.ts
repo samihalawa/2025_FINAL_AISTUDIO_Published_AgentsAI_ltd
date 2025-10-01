@@ -23,13 +23,11 @@ export const COMMON_HEAD = `
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    @keyframes slide-in-content { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes pulse-glow {
         0%, 100% { box-shadow: 0 0 15px -3px hsla(var(--primary), 0.6); }
         50% { box-shadow: 0 0 25px -3px hsla(var(--primary), 0.9); }
     }
     @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-    @keyframes pulse-text { 0%, 100% { color: hsl(var(--primary)); } 50% { color: hsl(142 80% 70%); } }
 
 
     body {
@@ -50,22 +48,6 @@ export const COMMON_HEAD = `
         background-color: hsl(var(--background));
         overflow: hidden;
     }
-
-    /* Content Animation */
-    .slide-header, .slide-title, .slide-subtitle, .card-grid, .metrics-row, .two-phase-arch, .moat-diagram, .market-circles, .funding-grid, .cta-box, .premium-mockup, .team-grid {
-        animation: slide-in-content 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    }
-    .slide-header { animation-delay: 0s; }
-    .slide-title { animation-delay: 0.1s; }
-    .slide-subtitle { animation-delay: 0.2s; }
-    .card-grid, .metrics-row, .two-phase-arch, .moat-diagram, .market-circles, .funding-grid, .premium-mockup, .team-grid, .cta-box { animation-delay: 0.3s; }
-    .card-grid .card:nth-child(1), .metrics-row .metric:nth-child(1), .moat-diagram .moat-pillar:nth-child(1), .two-phase-arch > *:nth-child(1) { animation-delay: 0.4s; }
-    .card-grid .card:nth-child(2), .metrics-row .metric:nth-child(2), .moat-diagram .moat-pillar:nth-child(2), .two-phase-arch > *:nth-child(2) { animation-delay: 0.5s; }
-    .card-grid .card:nth-child(3), .metrics-row .metric:nth-child(3), .moat-diagram .moat-pillar:nth-child(3), .two-phase-arch > *:nth-child(3) { animation-delay: 0.6s; }
-    .card-grid .card:nth-child(4) { animation-delay: 0.7s; }
-    .card-grid .card:nth-child(5) { animation-delay: 0.8s; }
-    .card-grid .card:nth-child(6) { animation-delay: 0.9s; }
-
     .slide-header {
         display: flex; justify-content: space-between; align-items: center;
         margin-bottom: clamp(1rem, 2.5vw, 2rem);
@@ -79,10 +61,9 @@ export const COMMON_HEAD = `
 
     /* Cover Slide */
     .slide-cover { align-items: center; justify-content: center; text-align: center; }
-    .slide-cover > * { animation: slide-in-content 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
-    .slide-cover .logo-large { animation-delay: 0.1s; font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: clamp(1rem, 2vw, 2rem); }
-    .slide-cover h1 { animation-delay: 0.2s; font-size: clamp(2.25rem, 4.2vw, 3.75rem); font-weight: 800; line-height: 1.15; margin-bottom: clamp(1rem, 2vw, 1.5rem); max-width: 25em; color: hsl(var(--foreground)); letter-spacing: -0.03em; }
-    .slide-cover .tagline { animation-delay: 0.3s; font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 400; color: hsl(var(--muted-foreground)); margin-bottom: clamp(2rem, 4vw, 3.5rem); max-width: 30em; margin-left: auto; margin-right: auto; line-height: 1.5; }
+    .slide-cover .logo-large { font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: clamp(1rem, 2vw, 2rem); }
+    .slide-cover h1 { font-size: clamp(2.25rem, 4.2vw, 3.75rem); font-weight: 800; line-height: 1.15; margin-bottom: clamp(1rem, 2vw, 1.5rem); max-width: 25em; color: hsl(var(--foreground)); letter-spacing: -0.03em; }
+    .slide-cover .tagline { font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 400; color: hsl(var(--muted-foreground)); margin-bottom: clamp(2rem, 4vw, 3.5rem); max-width: 30em; margin-left: auto; margin-right: auto; line-height: 1.5; }
     .slide-cover .meta {
         position: absolute; bottom: clamp(2rem, 4.5vw, 3.5rem); left: clamp(2.5rem, 5.5vw, 4.5rem); right: clamp(2.5rem, 5.5vw, 4.5rem);
         display: flex; justify-content: space-between; font-size: clamp(0.8rem, 1.1vw, 1rem); color: hsl(var(--muted-foreground));
@@ -94,7 +75,7 @@ export const COMMON_HEAD = `
 
     /* Unified Theme */
     .highlight, .flow-arrow { color: hsl(var(--primary)); }
-    .metric-value:not(.animate-counter) { animation: pulse-text 2.5s infinite ease-in-out; }
+    .metric-value:not(.animate-counter) { color: hsl(var(--primary)); }
     .tag { background: hsla(var(--primary), 0.15); color: hsl(var(--primary)); padding: 0.4em 0.8em; border-radius: 99px; font-size: clamp(0.8rem, 1vw, 0.9rem); font-weight: 600; border: 1px solid hsla(var(--primary), 0.3); }
 
     /* Cards & Grids */
