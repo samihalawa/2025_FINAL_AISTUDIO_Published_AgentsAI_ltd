@@ -6,6 +6,7 @@ import Navigation from './components/Navigation';
 import GridView from './components/GridView';
 import NotesPanel from './components/NotesPanel';
 import { getPageContent } from './pageContent';
+import { getPresentationDecks } from './presentationContent';
 import ContactModal from './components/ContactModal';
 import { LanguageProvider, useTranslation } from './hooks/useTranslation';
 import LanguageSwitcher from './components/LanguageSwitcher';
@@ -50,7 +51,8 @@ const PageHeader: React.FC = () => {
 
 const PresentationsApp: React.FC = () => {
   const { t, language } = useTranslation();
-  const { PROJECT_DETAILS, PRESENTATIONS } = getPageContent(language);
+  const { PROJECT_DETAILS } = getPageContent(language);
+  const PRESENTATIONS = getPresentationDecks(language);
 
   const [activeDeckIndex, setActiveDeckIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);

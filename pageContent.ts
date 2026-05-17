@@ -1,8 +1,3 @@
-import { APOLO_SLIDES_EN, APOLO_SLIDES_ES, APOLO_SLIDES_ZH } from './presentations/apolo';
-import { AUTOCLIENT_SLIDES_EN, AUTOCLIENT_SLIDES_ES, AUTOCLIENT_SLIDES_ZH } from './presentations/autoclient';
-import { RADIOLOGY_AI_SLIDES_EN, RADIOLOGY_AI_SLIDES_ES, RADIOLOGY_AI_SLIDES_ZH } from './presentations/radiology-ai';
-import { AUTOFOOTBALL_SLIDES_EN, AUTOFOOTBALL_SLIDES_ES, AUTOFOOTBALL_SLIDES_ZH } from './presentations/autofootball';
-import type { SlideDeck } from './presentations/common';
 import type { Language } from './hooks/useTranslation';
 
 const content = {
@@ -50,12 +45,6 @@ const content = {
             { href: '#portfolio', text: 'Portfolio' },
             { href: '#blog', text: 'Insights' },
             { href: '#cta', text: 'Contact' },
-        ],
-        PRESENTATIONS: [
-            { title: 'Apolo (Medical AI)', slides: APOLO_SLIDES_EN },
-            { title: 'AutoClient.ai (Sales AI)', slides: AUTOCLIENT_SLIDES_EN },
-            { title: 'RadiologyAI (Radiology AI)', slides: RADIOLOGY_AI_SLIDES_EN },
-            { title: 'AutoFootball.ai (Football AI)', slides: AUTOFOOTBALL_SLIDES_EN }
         ],
         BLOG_SECTION: {
             title: 'Latest Intelligence Briefings',
@@ -137,12 +126,6 @@ const content = {
             { href: '#blog', text: 'Perspectivas' },
             { href: '#cta', text: 'Contacto' },
         ],
-        PRESENTATIONS: [
-            { title: 'Apolo (IA Médica)', slides: APOLO_SLIDES_ES },
-            { title: 'AutoClient.ai (IA de Ventas)', slides: AUTOCLIENT_SLIDES_ES },
-            { title: 'RadiologyAI (IA de Radiología)', slides: RADIOLOGY_AI_SLIDES_ES },
-            { title: 'AutoFootball.ai (IA de Fútbol)', slides: AUTOFOOTBALL_SLIDES_ES }
-        ],
         BLOG_SECTION: {
             title: 'Informes Estratégicos Recientes',
             intro: 'Actualizaciones preparadas para inversores que conectan tracción comercial, validación de producto y señales de mercado en todo el portafolio de AGENTS AI.',
@@ -223,12 +206,6 @@ const content = {
             { href: '#blog', text: '洞察' },
             { href: '#cta', text: '联系' },
         ],
-        PRESENTATIONS: [
-            { title: 'Apolo (医疗AI)', slides: APOLO_SLIDES_ZH },
-            { title: 'AutoClient.ai (销售AI)', slides: AUTOCLIENT_SLIDES_ZH },
-            { title: 'RadiologyAI (放射科AI)', slides: RADIOLOGY_AI_SLIDES_ZH },
-            { title: 'AutoFootball.ai (足球AI)', slides: AUTOFOOTBALL_SLIDES_ZH }
-        ],
         BLOG_SECTION: {
             title: '最新战略洞察',
             intro: '面向投资人的高价值简报，串联 AGENTS AI 各项目的商业进展、产品验证与市场信号。',
@@ -274,7 +251,6 @@ interface PageContent {
         whyInvest: { title: string; content: string; reasons: { icon: string; title: string; text: string }[] };
     };
     NAV_LINKS: { href: string; text: string }[];
-    PRESENTATIONS: SlideDeck[];
     BLOG_SECTION: {
         title: string;
         intro: string;
