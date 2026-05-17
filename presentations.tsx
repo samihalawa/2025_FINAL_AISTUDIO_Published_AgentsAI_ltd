@@ -101,9 +101,25 @@ const PresentationsApp: React.FC = () => {
   }, [handleDeckSelect, PRESENTATIONS]);
 
   useEffect(() => {
-    if (window.lucide) {
-      window.lucide.createIcons();
-    }
+    const renderIcons = () => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    };
+
+    renderIcons();
+    window.addEventListener('load', renderIcons);
+    const retry = window.setInterval(() => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+        window.clearInterval(retry);
+      }
+    }, 100);
+
+    return () => {
+      window.removeEventListener('load', renderIcons);
+      window.clearInterval(retry);
+    };
   });
 
   useEffect(() => {

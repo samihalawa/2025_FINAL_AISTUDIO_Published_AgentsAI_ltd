@@ -33,7 +33,17 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, projects }
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // TODO: Implement actual form submission to backend service
+    const interest = formData.interest || t('contactModal.form.interest.general');
+    const subject = encodeURIComponent(`AGENTS AI inquiry: ${interest}`);
+    const body = encodeURIComponent([
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Project of interest: ${interest}`,
+      '',
+      formData.message
+    ].join('\n'));
+
+    window.location.href = `mailto:info@agentsai.ltd?subject=${subject}&body=${body}`;
     setIsSubmitted(true);
   };
 

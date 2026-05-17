@@ -2,8 +2,29 @@ import React, { useState, useEffect } from 'react';
 import StickyNav from './components/StickyNav';
 import ContactModal from './components/ContactModal';
 import Newsletter from './components/Newsletter';
+import LanguageSwitcher from './components/LanguageSwitcher';
 import { getPageContent } from './pageContent';
 import { useTranslation } from './hooks/useTranslation';
+import {
+  Activity,
+  ArrowRight,
+  ArrowUpRight,
+  BadgeCheck,
+  BarChart3,
+  Briefcase,
+  CalendarPlus,
+  Cpu,
+  FileText,
+  HeartPulse,
+  LayoutDashboard,
+  LayoutGrid,
+  Mail,
+  MapPin,
+  Phone,
+  ShieldCheck,
+  TrendingUp,
+  type LucideIcon
+} from 'lucide-react';
 
 declare global {
     interface Window {
@@ -12,6 +33,31 @@ declare global {
         };
     }
 }
+
+const ICONS: Record<string, LucideIcon> = {
+  'activity': Activity,
+  'arrow-right': ArrowRight,
+  'arrow-up-right': ArrowUpRight,
+  'badge-check': BadgeCheck,
+  'bar-chart-3': BarChart3,
+  'briefcase': Briefcase,
+  'calendar-plus': CalendarPlus,
+  'cpu': Cpu,
+  'file-text': FileText,
+  'heart-pulse': HeartPulse,
+  'layout-dashboard': LayoutDashboard,
+  'layout-grid': LayoutGrid,
+  'mail': Mail,
+  'map-pin': MapPin,
+  'phone': Phone,
+  'shield-check': ShieldCheck,
+  'trending-up': TrendingUp
+};
+
+const Icon = ({ name, className }: { name: string; className: string }) => {
+  const Component = ICONS[name] || Activity;
+  return <Component className={className} aria-hidden="true" />;
+};
 
 const App: React.FC = () => {
   const { t, language } = useTranslation();
@@ -27,9 +73,25 @@ const App: React.FC = () => {
   }, [language, t]);
 
   useEffect(() => {
-    if (window.lucide) {
-      window.lucide.createIcons();
-    }
+    const renderIcons = () => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    };
+
+    renderIcons();
+    window.addEventListener('load', renderIcons);
+    const retry = window.setInterval(() => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+        window.clearInterval(retry);
+      }
+    }, 100);
+
+    return () => {
+      window.removeEventListener('load', renderIcons);
+      window.clearInterval(retry);
+    };
   });
 
   useEffect(() => {
@@ -71,16 +133,43 @@ const App: React.FC = () => {
   return (
     <>
       <StickyNav links={NAV_LINKS} />
-      <header className="relative overflow-hidden py-32 md:py-48">
-        <div className="container mx-auto px-6 text-center">
-            <div className="relative z-10 max-w-4xl mx-auto">
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-zinc-50 to-zinc-400">{t('mainPage.header.title')}</h1>
-                <p className="text-xl md:text-3xl text-zinc-400 mb-10">{t('mainPage.header.subtitle')}</p>
-                <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-lg text-zinc-400">
-                    <span className="flex items-center gap-2"><i data-lucide="map-pin" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.location')}</span>
-                    <span className="flex items-center gap-2"><i data-lucide="shield-check" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.regNo')}: 16570822</span>
-                    <span className="flex items-center gap-2"><i data-lucide="phone" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.tel')}: +44 7883306011</span>
-                    <span className="flex items-center gap-2"><i data-lucide="mail" className="w-5 h-5 text-emerald-400"></i>{t('mainPage.header.email')}: info@agentsai.ltd</span>
+      <header className="relative overflow-hidden pb-10 pt-6 md:pb-14">
+        <div className="container mx-auto px-6">
+            <div className="relative z-20 mb-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <a href="#top" className="text-sm font-semibold uppercase tracking-[0.28em] text-zinc-400">AGENTS AI</a>
+                <div className="flex flex-wrap items-center gap-3">
+                    <nav className="flex flex-wrap items-center gap-2 text-sm text-zinc-400" aria-label="Primary">
+                        {NAV_LINKS.slice(0, 5).map(link => (
+                            <a key={link.href} href={link.href} className="rounded-full border border-zinc-800 bg-zinc-900/70 px-3 py-2 transition-colors hover:border-emerald-500/40 hover:text-white">
+                                {link.text}
+                            </a>
+                        ))}
+                    </nav>
+                    <LanguageSwitcher />
+                </div>
+            </div>
+            <div id="top" className="relative z-10 max-w-5xl">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-300">
+                    <Icon name="activity" className="h-4 w-4" />
+                    {t('mainPage.header.kicker')}
+                </div>
+                <h1 className="max-w-4xl text-5xl font-bold tracking-tight text-white md:text-6xl">{t('mainPage.header.title')}</h1>
+                <p className="mt-5 max-w-3xl text-lg leading-relaxed text-zinc-400 md:text-xl">{t('mainPage.header.subtitle')}</p>
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                    <a href="#portfolio" className="btn-primary inline-flex min-h-12 items-center justify-center px-7 py-3 text-base">
+                        <Icon name="layout-grid" className="mr-3 h-5 w-5" />
+                        {t('mainPage.header.portfolioButton')}
+                    </a>
+                    <button type="button" onClick={() => setIsContactModalOpen(true)} className="inline-flex min-h-12 items-center justify-center rounded-full border border-zinc-700 px-7 py-3 text-base font-semibold text-zinc-200 transition-colors hover:border-emerald-500/50 hover:bg-zinc-900">
+                        <Icon name="mail" className="mr-3 h-5 w-5 text-emerald-400" />
+                        {t('mainPage.header.contactButton')}
+                    </button>
+                </div>
+                <div className="mt-8 grid gap-3 text-sm text-zinc-400 sm:grid-cols-2 lg:grid-cols-4">
+                    <span className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/40 px-4 py-3"><Icon name="map-pin" className="h-4 w-4 text-emerald-400" />{t('mainPage.header.location')}</span>
+                    <span className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/40 px-4 py-3"><Icon name="shield-check" className="h-4 w-4 text-emerald-400" />{t('mainPage.header.regNo')}: 16570822</span>
+                    <span className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/40 px-4 py-3"><Icon name="phone" className="h-4 w-4 text-emerald-400" />+44 7883306011</span>
+                    <span className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/40 px-4 py-3"><Icon name="mail" className="h-4 w-4 text-emerald-400" />info@agentsai.ltd</span>
                 </div>
             </div>
         </div>
@@ -108,9 +197,9 @@ const App: React.FC = () => {
                       const metricContent = `${metric.label}: ${metric.value}`;
                       const isActive = activeContent === metricContent;
                       return (
-                        <div key={metric.label} onClick={() => handleContentClick(metricContent)} className={`p-6 rounded-2xl text-center cursor-pointer transition-all duration-300 ${isActive ? 'bg-zinc-800/90 ring-2 ring-emerald-500/60 shadow-lg' : 'bg-zinc-900/50 border border-zinc-800 hover:bg-zinc-800 hover:-translate-y-1'}`}>
-                            <span className="text-4xl font-bold text-emerald-400 block tracking-tighter">{metric.value}</span>
-                            <span className="text-zinc-400">{metric.label}</span>
+                        <div key={metric.label} onClick={() => handleContentClick(metricContent)} className={`p-6 rounded-lg text-left cursor-pointer transition-all duration-300 ${isActive ? 'bg-zinc-800/90 ring-2 ring-emerald-500/60 shadow-lg' : 'bg-zinc-900/50 border border-zinc-800 hover:bg-zinc-800 hover:-translate-y-1'}`}>
+                            <span className="text-2xl font-bold text-emerald-400 block tracking-tight">{metric.value}</span>
+                            <span className="mt-2 block text-sm leading-relaxed text-zinc-400">{metric.label}</span>
                         </div>
                       )
                   })}
@@ -128,7 +217,7 @@ const App: React.FC = () => {
                           <div key={reason.title} onClick={() => handleContentClick(reasonContent)} className={`group p-6 rounded-2xl cursor-pointer transition-all duration-300 border ${isActive ? 'bg-zinc-800 ring-2 ring-emerald-500/60 shadow-lg border-transparent' : 'bg-zinc-900/50 border-zinc-800 hover:bg-zinc-800 hover:border-emerald-500/30 hover:-translate-y-1'}`}>
                               <div className="flex items-start gap-4">
                                   <div className="flex-shrink-0 w-12 h-12 bg-zinc-800 rounded-lg flex items-center justify-center text-emerald-400">
-                                      <i data-lucide={reason.icon} className="w-6 h-6"></i>
+                                      <Icon name={reason.icon} className="w-6 h-6" />
                                   </div>
                                   <div>
                                       <h3 className="text-lg font-bold mb-1 text-white">{reason.title}</h3>
@@ -149,17 +238,22 @@ const App: React.FC = () => {
                     <a key={deck.name}
                         href={`presentations.html?deck=${index}`}
                         aria-label={`${t('mainPage.portfolio.viewAria')} ${deck.name}`}
-                        className="group block p-8 rounded-2xl cursor-pointer transition-all duration-300 bg-zinc-900/50 border border-zinc-800 hover:bg-zinc-800 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-950 focus:ring-emerald-400">
+                        className="group block p-7 rounded-lg cursor-pointer transition-all duration-300 bg-zinc-900/50 border border-zinc-800 hover:bg-zinc-800 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-950 focus:ring-emerald-400">
                         <div className="flex items-start gap-5">
                             <div className="flex-shrink-0 w-16 h-16 bg-zinc-800 rounded-lg flex items-center justify-center transition-colors text-emerald-400">
-                                <i data-lucide={deck.icon} className="w-8 h-8"></i>
+                                <Icon name={deck.icon} className="w-8 h-8" />
                             </div>
                             <div className="flex-grow">
+                                <span className="mb-3 inline-flex rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-300">{deck.status}</span>
                                 <h3 className="text-2xl font-bold mb-2 text-white">{deck.name}</h3>
                                 <p className="font-semibold text-zinc-400 mb-3">{deck.subtitle}</p>
                                 <p className="text-zinc-500 text-sm mb-4">{deck.value}</p>
+                                <div className="mb-5 space-y-2 text-sm text-zinc-400">
+                                    <p><span className="font-semibold text-zinc-200">{t('mainPage.portfolio.focusLabel')}:</span> {deck.focus}</p>
+                                    <p><span className="font-semibold text-zinc-200">{t('mainPage.portfolio.nextLabel')}:</span> {deck.next}</p>
+                                </div>
                                 <span className="font-semibold text-emerald-400/80 group-hover:text-emerald-400 transition-colors flex items-center gap-2">
-                                    {t('mainPage.portfolio.viewButton')} <i data-lucide="arrow-right" className="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                                    {t('mainPage.portfolio.viewButton')} <Icon name="arrow-right" className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                                 </span>
                             </div>
                         </div>
@@ -205,7 +299,7 @@ const App: React.FC = () => {
                                 className="inline-flex items-center text-emerald-400 hover:text-emerald-300 text-sm font-semibold transition-colors"
                             >
                                 {BLOG_SECTION.ctaLabel}
-                                <i data-lucide="arrow-up-right" className="w-4 h-4 ml-2"></i>
+                                <Icon name="arrow-up-right" className="w-4 h-4 ml-2" />
                             </button>
                         </article>
                     );
@@ -222,7 +316,7 @@ const App: React.FC = () => {
                     onClick={() => setIsContactModalOpen(true)}
                     className="btn-primary text-lg px-8 py-3"
                 >
-                    <i data-lucide="calendar-plus" className="w-6 h-6 mr-3"></i>
+                    <Icon name="calendar-plus" className="w-6 h-6 mr-3" />
                     {t('mainPage.cta.meetingButton')}
                 </button>
             </div>
