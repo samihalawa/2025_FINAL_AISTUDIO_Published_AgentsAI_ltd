@@ -334,6 +334,7 @@ const App: React.FC = () => {
             <p className="mb-1">{t('mainPage.footer.address')}</p>
             <p className="mb-1">{t('mainPage.footer.contact')}</p>
             <p className="mb-4">{t('mainPage.footer.legal')}</p>
+            <p className="mb-4"><a href="/compliance/AGENTS_AI_LTD_Cyber_Resilience_Pledge_signed_20261102.pdf" className="underline hover:text-zinc-300">{t('mainPage.footer.cyberResiliencePledge')}</a></p>
             <p className="text-sm max-w-3xl mx-auto"><span className="font-bold">{t('mainPage.footer.confidentialityTitle')}</span> {t('mainPage.footer.confidentialityText')}</p>
         </div>
       </footer>
